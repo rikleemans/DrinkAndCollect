@@ -1,10 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
+using Dal.Factory;
+using Dal.Interface;
 
 namespace Logic
 {
-    class Beer
+    public class Beer
     {
+        private readonly List<Beer> _Beer = new List<Beer>();
+        private readonly IBeer _dal;
+
+        public Beer()
+        {
+            _dal = BeerFactory.CreateBeerDal();
+        }
+
+
     }
 }

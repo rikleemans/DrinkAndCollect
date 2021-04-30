@@ -1,10 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Dal.Interface;
 
 namespace Dal.Factory
 {
-    class BeerFactory
+    public static class BeerFactory
     {
+        public static IBeer CreateBeerDal()
+        {
+            return new BeerDal();
+        }
     }
 }

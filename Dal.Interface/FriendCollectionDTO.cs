@@ -5,12 +5,12 @@ using System.Text;
 
 namespace Dal.Interface
 {
-    public class ReviewDTO
+    public class FriendCollectionDTO
     {
         #region properties
         [Key]
         public int ReviewID { get; }
-        public int UserID { get; }
+        public int FriendID { get; }
         public int BeerID { get; }
         public int Rate { get; }
         public string Taste { get; }
@@ -18,10 +18,10 @@ namespace Dal.Interface
         public DateTime Datum { get; }
         #endregion
 
-        public ReviewDTO(int reviewID, int userID, int beerID, int rate, string taste, string description, DateTime datum)
+        public FriendCollectionDTO(int reviewID, int friendID, int beerID, int rate, string taste, string description, DateTime datum)
         {
             ReviewID = reviewID;
-            UserID = userID;
+            FriendID = friendID;
             BeerID = beerID;
             Rate = rate;
             Taste = taste;

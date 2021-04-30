@@ -6,6 +6,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Linq;
+using Dal;
+using Dal.Interface;
 
 namespace DrinkAndCollectBlazor.Server
 {

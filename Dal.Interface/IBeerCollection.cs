@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Dal
+namespace Dal.Interface
 {
-    class FriendDal
+    public interface IBeerCollection
     {
+
     }
 }

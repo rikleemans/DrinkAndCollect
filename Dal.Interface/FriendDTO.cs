@@ -4,7 +4,22 @@ using System.Text;
 
 namespace Dal.Interface
 {
-    class FriendDTO
+    public class FriendDTO
     {
+        public int UserID { get; }
+        public int FriendID { get;  }
+        public string Username { get;  }
+        public string Firstname { get; }
+        public string Lastname { get;  }
+
+        public FriendDTO(int userID, int friendID, string username, string firstname, string lastname)
+        {
+            UserID = userID;
+            FriendID = friendID;
+            Username = username;
+            Firstname = firstname;
+            Lastname = lastname;
+
+        }
     }
 }

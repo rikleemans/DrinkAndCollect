@@ -1,10 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Dal.Interface;
+using Dal;
 
 namespace Dal.Factory
 {
-    class ReviewFactory
+    public static class ReviewFactory
     {
+        public static IReview CreateReviewDal()
+        {
+            return new ReviewDal();
+        }
     }
 }
+

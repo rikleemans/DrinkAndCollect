@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Dal.Interface
 {
-    class IReview
+    public interface IReview
     {
     }
 }

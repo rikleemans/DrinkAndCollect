@@ -4,7 +4,8 @@ using System.Text;
 
 namespace Dal.Interface
 {
-    class IAdmin
+    public interface IUserCollection
     {
+
     }
 }
