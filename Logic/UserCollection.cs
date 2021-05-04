@@ -9,63 +9,70 @@ namespace Logic
 {
     public class UserCollection
     {
-        private List<User> user = new List<User>();
+        public string Username { get; }
+        public string Password { get; }
+        public string Firstname { get; }
+        public string Lastname { get; }
+        public int Admin { get; }
+        public int Friend { get; }
+        private List<UserCollection> _usercollection = new List<UserCollection>();
+        private List<Review> _review = new List<Review>();
         private IUserCollection _dal;
 
-        public UserCollection()
+        public UserCollection(string username, string password, string firstname, string lastname, int admin, int friend)
         {
             _dal = UserCollectionFactory.CreateUserCollectionDal();
+            Username = username;
+            Password = password;
+            Firstname = firstname;
+            Lastname = lastname;
+            Admin = admin;
+            Friend = friend;
         }
 
-        //public void Register(string username, string password, string firstname, string lastname, int admin, int friend, bool succes)
-        //{
-        //    User users = new User(username, password, firstname, lastname, admin, friend, succes);
+        public UserCollection(UserDTO dto)
+        {
+            Username = dto.Username;
+            Password = dto.Password;
+            Firstname = dto.Firstname;
+            Lastname = dto.Lastname;
+            Admin = dto.Admin;
+            Friend = dto.Friend;
+        }
+        public UserDTO ConvertToDto()
+        {
+            return new UserDTO(Username, Password, Firstname, Lastname, Admin, Friend);
+        }
+        public void AddReview(int reviewID, int userID, int beerID, int rate, string taste, string description, DateTime datum)
+        {
+            var review = new Review(reviewID, userID, beerID, rate, taste, description, datum);
+            _review.Add(review);
+            _dal.AddReview(review.ConvertToDto());
+        }
 
-        //    #region Foreach way
-        //    //bool found = false;
-        //    //foreach (var raceDiscipline in raceDisciplines)
-        //    //{
-        //    //    if (raceDiscipline.Name == discipline.Name)
-        //    //    {
-        //    //        found = true;
-        //    //        break;
-        //    //    }
-        //    //}
+        public void RemoveReview(int reviewID, int userID, int beerID, int rate, string taste, string description, DateTime datum)
+        {
+            var review = new Review(reviewID, userID, beerID, rate, taste, description, datum);
+            _review.Add(review);
+            _dal.RemoveReview(review.ConvertToDto());
+        }
+        public void AddFriend(string username, string password, string firstname, string lastname, int admin, int friend)
+        {
+            var friends = new UserCollection(username, password, firstname, lastname, admin, friend);
+            _usercollection.Add(friends);
+            _dal.AddFriend(friends.ConvertToDto());
+        }
 
-        //    //if (!found)
-        //    //{
-        //    //    raceDisciplines.Add(discipline);
-        //    //}
-        //    // Instead of foreach, we can use a Linq query:
-        //    #endregion Foreach way
+        public void RemoveFriend(string username, string password, string firstname, string lastname, int admin, int friend)
+        {
+            var friends = new UserCollection(username, password, firstname, lastname, admin, friend);
+            _usercollection.Add(friends);
+            _dal.RemoveFriend(friends.ConvertToDto());
+        }
+        public void RateReview(int userID, int friendID, string username, string firstname, string lastname)
+        {
 
-        //    if (!user.Exists(uses => uses.Username == uses.Username))
-        //    {
-        //        user.Add(users);
-        //        dal.Register(users.ConvertToDTO()); // Create DTO from Discipline
-        //    }
-        //}
+        }
 
-        //public void RemoveRaceDiscipline(string name)
-        //{
-        //    User users = user.FirstOrDefault(uses => uses.Username == name);
-        //    if (users != null)
-        //    {
-        //        user.Remove(users);
-        //        dal.RemoveUser(users.ConvertToDTO()); // Create DTO from Discipline
-        //    }
-
-        //}
-
-        //public IReadOnlyCollection<User> GetAllRaceDisciplines()
-        //{
-        //    List<UserDTO> users = dal.GetAllUser();
-        //    user.Clear();
-        //    foreach (UserDTO DTO in users)
-        //    {
-        //        user.Add(new User(DTO));
-        //    }
-        //    return user.AsReadOnly(); // Create Discipline From DTO
-        //}
     }
 }

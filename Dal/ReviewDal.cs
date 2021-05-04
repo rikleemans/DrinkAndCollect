@@ -13,14 +13,11 @@ namespace Dal
    public class ReviewDal : IReview
     {
 
-        public void UpdateReview(int reviewID, int userID, int beerID, int rate, string taste, string description, DateTime datum)
+        public void UpdateReview(ReviewDTO review)
         {
             using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DrinkAndCollect"));
-            List<ReviewDTO> beers = new List<ReviewDTO>();
 
-                beers.Add(new ReviewDTO(reviewID, userID, beerID, rate, taste, description, datum));
-
-                connection.Execute("dbo.UpdateReview");
+            connection.Execute("dbo.UpdateReview");
         }
     }
 }

@@ -19,35 +19,29 @@ namespace Dal
                 return output;
             
         }
-        public List<BeernameDTO> GetAllBeer(string beername)
+        public List<BeernameDTO> GetAllBeer(string name)
         {
             using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DrinkAndCollect"));
             DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("@beername", beername);
+            parameters.Add("@name", name);
             
                 var output = connection.Query<BeernameDTO>("dbo.GetAllBeers @beername", parameters).ToList();
                 return output;
             
         }
 
-        public void AddBeer(string name, string beerdescription, string style)
+        public void AddBeer(BeerDTO beerDto)
         {
             using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DrinkAndCollect"));
-            List<BeerDTO> beers = new List<BeerDTO>();
 
-                beers.Add(new BeerDTO(name, beerdescription, style));
-
-                connection.Execute("dbo.InsertBeer");
+            connection.Execute("dbo.InsertBeer");
         }
 
-        public void RemoveBeer(string name, string beerdescription, string style)
+        public void RemoveBeer(BeerDTO beerDto)
         {
             using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DrinkAndCollect"));
-            List<BeerDTO> beers = new List<BeerDTO>();
 
-                beers.Remove(new BeerDTO(name, beerdescription, style));
-
-                connection.Execute("dbo.RemoveBeer");
+            connection.Execute("dbo.RemoveBeer");
         }
     }
 }

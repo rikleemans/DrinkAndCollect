@@ -11,14 +11,11 @@ namespace Dal
 {
    public class BeerDal : IBeer
     {
-        public void UpdateBeer(string name, string beerdescription, string style)
+        public void UpdateBeer(BeerDTO beerDTO)
         {
             using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DrinkAndCollect"));
-            List<BeerDTO> beers = new List<BeerDTO>();
 
-                beers.Add(new BeerDTO(name, beerdescription, style));
-
-                connection.Execute("dbo.UpdateBeer");
+            connection.Execute("dbo.UpdateBeer @name, @beerdescription, @style", beerDTO);
         }
     }
 }

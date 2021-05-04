@@ -6,6 +6,9 @@ namespace Dal.Interface
 {
     public interface IBeerCollection
     {
-
+        public List<BeerDTO> GetAllBeerInfo();
+        public List<BeernameDTO> GetAllBeer(string name);
+        public void AddBeer(BeerDTO beers);
+        public void RemoveBeer(BeerDTO beers);
     }
 }

@@ -16,42 +16,44 @@ namespace Dal
 
     }
 
-    public List<ReviewDTO> GetAllReviews(int reviewID, int userID, int beerID, int rate, string taste,
-        string description, DateTime datum)
+    public List<ReviewDTO> GetAllReviews()
     {
         using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DrinkAndCollect"));
 
         var output = connection.Query<ReviewDTO>("dbo.GetAllReviews").ToList();
         return output;
-
     }
-
-    public void UpdateAccount(string username, string password, string firstname, string lastname, int admin,
-        int friend)
+    public List<ReviewDTO> GetCollection()
     {
         using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DrinkAndCollect"));
-        List<UserDTO> user = new List<UserDTO>();
 
-        user.Add(new UserDTO(username, password, firstname, lastname, admin, friend));
+        var output = connection.Query<ReviewDTO>("dbo.GetCollection").ToList();
+        return output;
+    }
+
+        public void UpdateAccount(UserDTO user)
+    {
+        using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DrinkAndCollect"));
 
         connection.Execute("dbo.UpdateUser");
     }
 
-    public List<FriendDTO> GetAllFriends(int userID, int friendID, string username, string firstname, string lastname)
+    public List<FriendDTO> GetAllFriends(int UserID)
     {
         using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DrinkAndCollect"));
-
-        var output = connection.Query<FriendDTO>("dbo.GetAllReviews").ToList();
+        DynamicParameters parameters = new DynamicParameters();
+        parameters.Add("@UserID", UserID);
+            var output = connection.Query<FriendDTO>("dbo.GetAllReviews", parameters).ToList();
         return output;
 
     }
 
-    public List<FriendCollectionDTO> GetFriendCollection(int reviewID, int friendID, int beerID, int rate, string taste,
-        string description, DateTime datum)
+    public List<FriendCollectionDTO> GetFriendCollection(int UserID)
     {
         using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DrinkAndCollect"));
-
-        var output = connection.Query<FriendCollectionDTO>("dbo.GetAllReviews").ToList();
+        DynamicParameters parameters = new DynamicParameters();
+        parameters.Add("@UserID", UserID);
+            var output = connection.Query<FriendCollectionDTO>("dbo.GetAllReviews", parameters).ToList();
         return output;
 
     }

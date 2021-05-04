@@ -27,44 +27,36 @@ namespace Dal
 
         }
 
-        public void AddReview(int reviewID, int userID, int beerID, int rate, string taste, string description, DateTime datum)
+        public void AddReview(ReviewDTO review)
         {
             using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DrinkAndCollect"));
-            List<ReviewDTO> review = new List<ReviewDTO>();
 
-                review.Add(new ReviewDTO(reviewID, userID, beerID, rate, taste, description, datum));
-
-                connection.Execute("dbo.InsertReview");
+            connection.Execute("dbo.InsertReview");
         }
 
-        public void RemoveReview(int reviewID, int userID, int beerID, int rate, string taste, string description, DateTime datum)
+        public void RemoveReview(ReviewDTO review)
         {
             using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DrinkAndCollect"));
-            List<ReviewDTO> review = new List<ReviewDTO>();
 
-                review.Remove(new ReviewDTO(reviewID, userID, beerID, rate, taste, description, datum));
-
-                connection.Execute("dbo.RemoveReview");
+            connection.Execute("dbo.RemoveReview");
         }
-        public void AddFriend(int userID, int friendID, string username, string firstname, string lastname)
+        public void AddFriend(UserDTO friends)
         {
             using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DrinkAndCollect"));
 
-            List<FriendDTO> friend = new List<FriendDTO>();
-
-                friend.Add(new FriendDTO(userID, friendID, username, firstname, lastname));
-
-                connection.Execute("dbo.AddFriend");
+            connection.Execute("dbo.AddFriend");
         }
 
-        public void RemoveFriend(int userID, int friendID, string username, string firstname, string lastname)
+        public void RemoveFriend(UserDTO friends)
         {
             using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DrinkAndCollect"));
-            List<FriendDTO> friend = new List<FriendDTO>();
 
-                friend.Remove(new FriendDTO(userID, friendID, username, firstname, lastname));
+            connection.Execute("dbo.RemoveFriend");
+        }
 
-                connection.Execute("dbo.RemoveFriend");
+        public void RateReview(UserDTO rate)
+        {
+
         }
     }
 }
