@@ -6,11 +6,11 @@ namespace Dal.Interface
 {
     public interface IUser
     {
-        void UpdateAccount(UserDTO user);
         List<ReviewDTO> GetAllReviews();
-        List<FriendDTO> GetAllFriends(int UserID);
-        List<FriendCollectionDTO> GetFriendCollection(int UserID);
-        List<ReviewDTO> GetCollection();
+        List<ReviewDTO> GetAllReviewsByUser(int id);
+        List<FriendDTO> GetAllFriends(int id);
+        List<FriendCollectionDTO> GetFriendCollection(int id, int friendid);
+        List<ReviewDTO> GetCollection(int id);
 
     }
 }

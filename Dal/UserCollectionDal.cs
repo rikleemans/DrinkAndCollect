@@ -1,12 +1,12 @@
-﻿using System;
+﻿using Dal.Interface;
+using Dapper;
+using Org.BouncyCastle.Bcpg;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
-using Dal.Interface;
-using Dapper;
-using Org.BouncyCastle.Bcpg;
 
 namespace Dal
 {
@@ -14,44 +14,70 @@ namespace Dal
     {
         public UserCollectionDal()
         {
-            
-        }
-
-        public void Login()
-        {
 
         }
 
-        public void Register()
+        public bool AddReview(ReviewDTO review)
         {
+            using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DefaultConnection"));
+            var result = connection.Execute("dbo.InsertReview @reviewID, @userID, @rate, @taste, @description, @createdOn", review);
+            if (result > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
 
+            }
         }
 
-        public void AddReview(ReviewDTO review)
+        public bool RemoveReview(int id)
         {
-            using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DrinkAndCollect"));
+            using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DefaultConnection"));
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("id", id);
+            var result = connection.Execute("dbo.RemoveReview @id", parameters);
+            if (result > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
 
-            connection.Execute("dbo.InsertReview");
+            }
+        }
+        public bool AddFriend(UserDTO friends)
+        {
+            using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DefaultConnection"));
+            var result = connection.Execute("dbo.AddFriend");
+            if (result > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+
+            }
         }
 
-        public void RemoveReview(ReviewDTO review)
+        public bool RemoveFriend(int id)
         {
-            using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DrinkAndCollect"));
+            using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DefaultConnection"));
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("id", id);
+            var result = connection.Execute("dbo.RemoveFriend @id", parameters);
+            if (result > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
 
-            connection.Execute("dbo.RemoveReview");
-        }
-        public void AddFriend(UserDTO friends)
-        {
-            using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DrinkAndCollect"));
-
-            connection.Execute("dbo.AddFriend");
-        }
-
-        public void RemoveFriend(UserDTO friends)
-        {
-            using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DrinkAndCollect"));
-
-            connection.Execute("dbo.RemoveFriend");
+            }
         }
 
         public void RateReview(UserDTO rate)

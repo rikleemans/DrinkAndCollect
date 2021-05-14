@@ -6,6 +6,6 @@ namespace Dal.Interface
 {
     public interface IBeer
     {
-        void UpdateBeer(BeerDTO beerDTO);
+        void UpdateBeer(BeerDTO beer);
     }
 }

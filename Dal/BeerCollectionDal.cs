@@ -1,11 +1,11 @@
-﻿using System;
+﻿using Dal.Interface;
+using Dapper;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
-using Dal.Interface;
-using Dapper;
 
 namespace Dal
 {
@@ -13,35 +13,53 @@ namespace Dal
     {
         public List<BeerDTO> GetAllBeerInfo()
         {
-            using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DrinkAndCollect"));
-            
-                var output = connection.Query<BeerDTO>("dbo.GetAllBeerInfo").ToList();
-                return output;
-            
+            using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DefaultConnection"));
+
+            var output = connection.Query<BeerDTO>("dbo.GetAllBeerInfo").ToList();
+            return output;
+
         }
+
         public List<BeernameDTO> GetAllBeer(string name)
         {
-            using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DrinkAndCollect"));
+            using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DefaultConnection"));
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add("@name", name);
-            
-                var output = connection.Query<BeernameDTO>("dbo.GetAllBeers @beername", parameters).ToList();
-                return output;
-            
+            var output = connection.Query<BeernameDTO>("dbo.GetAllBeer @name", parameters).ToList();
+            return output;
+
         }
 
-        public void AddBeer(BeerDTO beerDto)
+        public bool AddBeer(BeerDTO beerDto)
         {
-            using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DrinkAndCollect"));
+            using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DefaultConnection"));
+            var result = connection.Execute("dbo.AddBeer  @id, @catID, @styleID, @name, @description", beerDto);
+            if (result > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
 
-            connection.Execute("dbo.InsertBeer");
+            }
         }
 
-        public void RemoveBeer(BeerDTO beerDto)
+        public bool RemoveBeer(int id)
         {
-            using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DrinkAndCollect"));
-
-            connection.Execute("dbo.RemoveBeer");
+            using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DefaultConnection"));
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("id", id);
+            var result = connection.Execute("dbo.RemoveBeer @id", parameters);
+            if (result > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
+

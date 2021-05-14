@@ -1,60 +1,71 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Dal.Factory;
+﻿using Dal.Factory;
 using Dal.Interface;
 using Dal.Interface.Enums;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Drawing;
+using System.Text;
 
 namespace Logic
 {
     public class BeerCollection
     {
-        public string Name { get; }
-        public string BeerDescription { get; }
 
-        public Style.style Style { get; }
         private readonly IBeerCollection _dal;
-        private readonly List<BeerCollection> _beerCollection = new List<BeerCollection>();
+        private readonly List<Beer> _beerCollection = new List<Beer>();
+        private readonly List<BeernameDTO> _beername = new List<BeernameDTO>();
+        private readonly List<BeerDTO> _beer = new List<BeerDTO>();
+        private readonly IStyle _dalstyle;
+        private readonly ICategory _dalcat;
 
-        public BeerCollection(string name, string beerdescription, string style)
+        public BeerCollection()
         {
             _dal = BeerCollectionFactory.CreateBeerCollectionDal();
-            Name = name;
-            BeerDescription = beerdescription;
-            Style = Style.style;
-        }
-        public BeerCollection(BeerDTO dto)
-        {
-            Name = dto.Name;
-            BeerDescription = dto.BeerDescription;
-            Style = dto.style;
-        }
-        public BeerDTO ConvertToDto()
-        {
-            return new BeerDTO(Name, BeerDescription, Style);
+
         }
 
-        public List<BeerDTO> GetAllBeerInfo()
+        public ReadOnlyCollection<Beer> GetAllBeerInfo()
         {
-            return _dal.GetAllBeerInfo();
+            _beerCollection.Clear();
+            _dal.GetAllBeerInfo().ForEach(
+                dto => _beerCollection.Add(new Beer(dto)));
+            return _beerCollection.AsReadOnly();
         }
 
-        public List<BeernameDTO> GetAllBeer(string name)
+        public ReadOnlyCollection<BeernameDTO> GetAllBeer(string name)
         {
-            return _dal.GetAllBeer(name);
-        }
-        public void AddBeer(string name, string beerdescription, string style)
-        {
-            var beers = new BeerCollection(name, beerdescription, style);
-            _beerCollection.Add(beers);
-            _dal.AddBeer(beers.ConvertToDto());
+            _beername.Clear();
+            _dal.GetAllBeer(name);
+            return _beername.AsReadOnly();
         }
 
-        public void RemoveBeer(string name, string beerdescription, string style)
+        public bool AddBeer(Beer beer)
         {
-            var beers = new BeerCollection(name, beerdescription, style);
-            _beerCollection.Add(beers);
-            _dal.RemoveBeer(beers.ConvertToDto());
+            return _dal.AddBeer(beer.ConvertToDto());
+        }
+
+        public bool RemoveBeer(int id)
+        {
+            return _dal.RemoveBeer(id);
+        }
+        public bool AddCategory(string name)
+        {
+            return _dalcat.AddCategory(name);
+        }
+
+        public bool RemoveCategory(int id)
+        {
+            return _dalcat.RemoveCategory(id);
+        }
+        public bool AddStyle(string name)
+        {
+            return _dalstyle.AddStyle(name);
+        }
+
+        public bool RemoveStyle(int id)
+        {
+            return _dalstyle.RemoveStyle(id);
         }
     }
 }

@@ -1,73 +1,40 @@
-﻿using System;
+﻿using Dal.Factory;
+using Dal.Interface;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Dal.Factory;
-using Dal.Interface;
 
 namespace Logic
 {
     public class UserCollection
     {
-        public string Username { get; }
-        public string Password { get; }
-        public string Firstname { get; }
-        public string Lastname { get; }
-        public int Admin { get; }
-        public int Friend { get; }
-        private List<UserCollection> _usercollection = new List<UserCollection>();
+        private readonly List<User> _usercollection = new List<User>();
         private List<Review> _review = new List<Review>();
         private IUserCollection _dal;
 
-        public UserCollection(string username, string password, string firstname, string lastname, int admin, int friend)
+        public UserCollection()
         {
             _dal = UserCollectionFactory.CreateUserCollectionDal();
-            Username = username;
-            Password = password;
-            Firstname = firstname;
-            Lastname = lastname;
-            Admin = admin;
-            Friend = friend;
         }
 
-        public UserCollection(UserDTO dto)
+        public bool AddReview(Review review)
         {
-            Username = dto.Username;
-            Password = dto.Password;
-            Firstname = dto.Firstname;
-            Lastname = dto.Lastname;
-            Admin = dto.Admin;
-            Friend = dto.Friend;
-        }
-        public UserDTO ConvertToDto()
-        {
-            return new UserDTO(Username, Password, Firstname, Lastname, Admin, Friend);
-        }
-        public void AddReview(int reviewID, int userID, int beerID, int rate, string taste, string description, DateTime datum)
-        {
-            var review = new Review(reviewID, userID, beerID, rate, taste, description, datum);
-            _review.Add(review);
-            _dal.AddReview(review.ConvertToDto());
+            return _dal.AddReview(review.ConvertToDto());
         }
 
-        public void RemoveReview(int reviewID, int userID, int beerID, int rate, string taste, string description, DateTime datum)
+        public bool RemoveReview(int id)
         {
-            var review = new Review(reviewID, userID, beerID, rate, taste, description, datum);
-            _review.Add(review);
-            _dal.RemoveReview(review.ConvertToDto());
+            return _dal.RemoveReview(id);
         }
-        public void AddFriend(string username, string password, string firstname, string lastname, int admin, int friend)
+        public bool AddFriend(User friend)
         {
-            var friends = new UserCollection(username, password, firstname, lastname, admin, friend);
-            _usercollection.Add(friends);
-            _dal.AddFriend(friends.ConvertToDto());
+            return _dal.AddFriend(friend.ConvertToDto());
         }
 
-        public void RemoveFriend(string username, string password, string firstname, string lastname, int admin, int friend)
+        public bool RemoveFriend(int id)
         {
-            var friends = new UserCollection(username, password, firstname, lastname, admin, friend);
-            _usercollection.Add(friends);
-            _dal.RemoveFriend(friends.ConvertToDto());
+            return _dal.RemoveFriend(id);
         }
         public void RateReview(int userID, int friendID, string username, string firstname, string lastname)
         {

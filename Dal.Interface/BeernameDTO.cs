@@ -9,13 +9,18 @@ namespace Dal.Interface
     {
         #region properties
         [Key]
-        public string Name { get; }
+        public string Name { get;}
         #endregion
-
+        public BeernameDTO()
+        {
+        }
         public BeernameDTO(string name)
         {
             Name = name;
-
+        }
+        public BeernameDTO ConvertToDto()
+        {
+            return new BeernameDTO(Name);
         }
     }
 }

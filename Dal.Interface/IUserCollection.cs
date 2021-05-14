@@ -6,10 +6,10 @@ namespace Dal.Interface
 {
     public interface IUserCollection
     {
-        void AddReview(ReviewDTO review);
-        void RemoveReview(ReviewDTO review);
-        void AddFriend(UserDTO friends);
-        void RemoveFriend(UserDTO friends);
+        bool AddReview(ReviewDTO review);
+        bool RemoveReview(int id);
+        bool AddFriend(UserDTO friends);
+        bool RemoveFriend(int id);
         void RateReview(UserDTO rate);
     }
 }

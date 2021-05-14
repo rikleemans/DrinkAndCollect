@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Dal.Interface
 {
-   public class UserDTO
+    public class UserDTO
     {
         public string Username { get; }
         public string Password { get; }

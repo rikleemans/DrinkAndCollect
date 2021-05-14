@@ -18,6 +18,10 @@ namespace Dal.Interface
         public DateTime Datum { get; }
         #endregion
 
+        public FriendCollectionDTO()
+        {
+
+        }
         public FriendCollectionDTO(int reviewID, int friendID, int beerID, int rate, string taste, string description, DateTime datum)
         {
             ReviewID = reviewID;
@@ -27,10 +31,6 @@ namespace Dal.Interface
             Taste = taste;
             Description = description;
             Datum = datum;
-
-
-
-
         }
     }
 }

@@ -1,5 +1,5 @@
-﻿using Dal.Interface;
-using Dal;
+﻿using Dal;
+using Dal.Interface;
 
 namespace Dal.Factory
 {

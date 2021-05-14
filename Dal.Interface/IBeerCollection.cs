@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 
 namespace Dal.Interface
@@ -8,7 +9,7 @@ namespace Dal.Interface
     {
         public List<BeerDTO> GetAllBeerInfo();
         public List<BeernameDTO> GetAllBeer(string name);
-        public void AddBeer(BeerDTO beers);
-        public void RemoveBeer(BeerDTO beers);
+        public bool AddBeer(BeerDTO beers);
+        public bool RemoveBeer(int id);
     }
 }

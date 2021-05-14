@@ -1,7 +1,7 @@
-﻿using System;
+﻿using Dal.Interface;
+using System;
 using System.Collections.Generic;
 using System.Text;
-using Dal.Interface;
 
 namespace Dal.Factory
 {

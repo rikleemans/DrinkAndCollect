@@ -1,13 +1,14 @@
-﻿using System;
+﻿using Dal;
+using Dal.Factory;
+using Dal.Interface;
+using Dapper;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
-using Dal;
-using Dal.Factory;
-using Dal.Interface;
-using Dapper;
 
 namespace Logic
 {
@@ -22,6 +23,9 @@ namespace Logic
 
         private readonly IUser _dal;
         private readonly List<User> _user = new List<User>();
+        private readonly List<Review> _review = new List<Review>();
+        private readonly List<FriendDTO> _friend = new List<FriendDTO>();
+        private readonly List<FriendCollectionDTO> _friendc = new List<FriendCollectionDTO>();
         public User(string username, string password, string firstname, string lastname, int admin, int friend)
         {
             _dal = UserFactory.CreateUserDal();
@@ -46,30 +50,46 @@ namespace Logic
         {
             return new UserDTO(Username, Password, Firstname, Lastname, Admin, Friend);
         }
+        //public void UpdateAccount(User user)
+        //{
+        //    _user.Add(user);
+        //    _dal.UpdateAccount(user.ConvertToDto());
+        //}
+        public ReadOnlyCollection<Review> GetAllReviews()
+        {
+            _review.Clear();
+            _dal.GetAllReviews().ForEach(
+                dto => _review.Add(new Review(dto)));
+            return _review.AsReadOnly();
+        }
+        public ReadOnlyCollection<Review> GetAllReviewsByUser(int id)
+        {
+            _review.Clear();
+            _dal.GetAllReviewsByUser(id).ForEach(
+                dto => _review.Add(new Review(dto)));
+            return _review.AsReadOnly();
+        }
+        public ReadOnlyCollection<Review> GetCollection(int id)
+        {
+            _review.Clear();
+            _dal.GetCollection(id).ForEach(
+                dto => _review.Add(new Review(dto)));
+            return _review.AsReadOnly();
+        }
+        public ReadOnlyCollection<FriendDTO> GetAllFriends(int id)
+        {
+            _user.Clear();
+            _dal.GetAllFriends(id).ForEach(
+                dto => _friend.Add(dto));
+            return _friend.AsReadOnly();
+        }
 
-        public void UpdateAccount(string username, string password, string firstname, string lastname, int admin, int friend)
+        public ReadOnlyCollection<FriendCollectionDTO> GetFriendCollection(int id, int friendid)
         {
-
-            var user = new User(username, password, firstname, lastname, admin, friend);
-            _user.Add(user);
-            _dal.UpdateAccount(user.ConvertToDto());
-        }
-        public List<ReviewDTO> GetAllReviews()
-        {
-            return _dal.GetAllReviews();
-        }
-        public List<ReviewDTO> GetCollection()
-        {
-            return _dal.GetCollection();
-        }
-        public List<FriendDTO> GetAllFriends(int UserID)
-        {
-            return _dal.GetAllFriends(UserID);
-        }
-
-        public List<FriendCollectionDTO> GetFriendCollection(int UserID)
-        {
-            return _dal.GetFriendCollection(UserID);
+            _user.Clear();
+            _dal.GetFriendCollection(id, friendid).ForEach(
+                dto => _friendc.Add(dto));
+            return _friendc.AsReadOnly();
         }
     }
 }

@@ -1,51 +1,55 @@
-﻿using System.Collections.Generic;
-using Dal.Factory;
+﻿using Dal.Factory;
 using Dal.Interface;
 using Dal.Interface.Enums;
 using Org.BouncyCastle.Asn1.X509;
+using System.Collections.Generic;
+using System.Dynamic;
 
 namespace Logic
 {
     public class Beer
     {
         #region properties
+        public int ID { get; }
+        public int StyleID { get; }
+        public int CatID { get; }
+        public string Name { get; }
+        public string Description { get; }
 
-            public string Name { get; }
-            public string BeerDescription { get; }
+        #endregion
 
-            public Style.style Style { get; }
+        private readonly IBeer _dal;
+        private readonly List<Beer> _Beer = new List<Beer>();
 
-            #endregion
+        public Beer(int id, int styleid, int catid, string name, string description)
+        {
+            _dal = BeerFactory.CreateBeerDal();
+            ID = id;
+            StyleID = styleid;
+            CatID = catid;
+            Name = name;
+            Description = description;
+        }
 
-            private readonly IBeer _dal;
-            private readonly List<Beer> _Beer = new List<Beer>();
-             public Beer(string name, string beerdescription, string style)
-            {
-                _dal = BeerFactory.CreateBeerDal();
-                Name = name;
-                BeerDescription = beerdescription;
-                Style = style;
-            }
+        public Beer(BeerDTO dto)
+        {
+            ID = dto.ID;
+            StyleID = dto.StyleID;
+            CatID = dto.CatID;
+            Name = dto.Name;
+            Description = dto.Description;
+        }
 
-            public Beer(BeerDTO dto)
-            {
-                Name = dto.Name;
-                BeerDescription = dto.BeerDescription;
-                Style = dto.style;
-            }
+        public void UpdateBeer(Beer beer)
+        {
+            _Beer.Add(beer);
+            _dal.UpdateBeer(beer.ConvertToDto());
+        }
 
-            public void UpdateBeer(string name, string beerdescription, string style)
-            {
-
-                var Beer = new Beer(name, beerdescription, style);
-                _Beer.Add(Beer);
-                _dal.UpdateBeer(Beer.ConvertToDto());
-            }
-
-            public BeerDTO ConvertToDto()
-            {
-                return new BeerDTO(Name, BeerDescription, Style);
-            }
+        public BeerDTO ConvertToDto()
+        {
+            return new BeerDTO(ID, StyleID, CatID, Name, Description);
         }
     }
+}
 
