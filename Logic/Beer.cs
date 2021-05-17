@@ -21,6 +21,7 @@ namespace Logic
         private readonly IBeer _dal;
         private readonly List<Beer> _Beer = new List<Beer>();
 
+
         public Beer(int id, int styleid, int catid, string name, string description)
         {
             _dal = BeerFactory.CreateBeerDal();
@@ -29,6 +30,10 @@ namespace Logic
             CatID = catid;
             Name = name;
             Description = description;
+        }
+        public Beer()
+        {
+
         }
 
         public Beer(BeerDTO dto)

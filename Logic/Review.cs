@@ -19,6 +19,10 @@ namespace Logic
         private readonly IReview _dal;
         private readonly List<Review> _review = new List<Review>();
 
+        public Review()
+        {
+
+        }
 
         public Review(int reviewID, int userID, int beerID, int rate, string taste, string description, DateTime datum)
         {
@@ -46,7 +50,13 @@ namespace Logic
         {
             return new ReviewDTO(ReviewID, UserID, BeerID, Rate, Taste, Description, Datum);
         }
-
+        //public class CallingClass{
+        //    private List<Review> reviewlijst = new List<Review>();
+        //    public List<Review> GetList()
+        //    {
+        //        return reviewlijst;
+        //    }
+        //}
         public void UpdateReview(Review review)
         {
             _review.Add(review);
