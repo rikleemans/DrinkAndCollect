@@ -5,14 +5,12 @@ using Dapper;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Data;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
+using Logic.Interface;
+
 
 namespace Logic
 {
-    public class User
+    public class User : IViewableUser, IReadUser
     {
         public string Username { get; }
         public string Password { get; }
@@ -26,6 +24,11 @@ namespace Logic
         private readonly List<Review> _review = new List<Review>();
         private readonly List<FriendDTO> _friend = new List<FriendDTO>();
         private readonly List<FriendCollectionDTO> _friendc = new List<FriendCollectionDTO>();
+
+        public User()
+        {
+
+        }
         public User(string username, string password, string firstname, string lastname, int admin, int friend)
         {
             _dal = UserFactory.CreateUserDal();
@@ -55,28 +58,28 @@ namespace Logic
         //    _user.Add(user);
         //    _dal.UpdateAccount(user.ConvertToDto());
         //}
-        public ReadOnlyCollection<Review> GetAllReviews()
+        public IReadOnlyCollection<IViewableReview> GetAllReviews()
         {
             _review.Clear();
             _dal.GetAllReviews().ForEach(
                 dto => _review.Add(new Review(dto)));
             return _review.AsReadOnly();
         }
-        public ReadOnlyCollection<Review> GetAllReviewsByUser(int id)
+        public IReadOnlyCollection<IViewableReview> GetAllReviewsByUser(int id)
         {
             _review.Clear();
             _dal.GetAllReviewsByUser(id).ForEach(
                 dto => _review.Add(new Review(dto)));
             return _review.AsReadOnly();
         }
-        public ReadOnlyCollection<Review> GetCollection(int id)
+        public IReadOnlyCollection<IViewableReview> GetCollection(int id)
         {
             _review.Clear();
             _dal.GetCollection(id).ForEach(
                 dto => _review.Add(new Review(dto)));
             return _review.AsReadOnly();
         }
-        public ReadOnlyCollection<FriendDTO> GetAllFriends(int id)
+        public IReadOnlyCollection<FriendDTO> GetAllFriends(int id)
         {
             _user.Clear();
             _dal.GetAllFriends(id).ForEach(
@@ -84,7 +87,7 @@ namespace Logic
             return _friend.AsReadOnly();
         }
 
-        public ReadOnlyCollection<FriendCollectionDTO> GetFriendCollection(int id, int friendid)
+        public IReadOnlyCollection<FriendCollectionDTO> GetFriendCollection(int id, int friendid)
         {
             _user.Clear();
             _dal.GetFriendCollection(id, friendid).ForEach(

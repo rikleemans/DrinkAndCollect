@@ -4,10 +4,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Logic.Interface;
 
 namespace Logic
 {
-    public class UserCollection
+    public class UserCollection : IReadUserCollection
     {
         private readonly List<User> _usercollection = new List<User>();
         private List<Review> _review = new List<Review>();
@@ -17,8 +18,7 @@ namespace Logic
         {
             _dal = UserCollectionFactory.CreateUserCollectionDal();
         }
-
-        public bool AddReview(Review review)
+        public bool AddReview(IViewableReview review)
         {
             return _dal.AddReview(review.ConvertToDto());
         }
@@ -27,7 +27,7 @@ namespace Logic
         {
             return _dal.RemoveReview(id);
         }
-        public bool AddFriend(User friend)
+        public bool AddFriend(IViewableUser friend)
         {
             return _dal.AddFriend(friend.ConvertToDto());
         }

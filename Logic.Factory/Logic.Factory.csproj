@@ -1,13 +1,12 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Dal.Factory\Dal.Factory.csproj" />
-    <ProjectReference Include="..\Dal.Interface\Dal.Interface.csproj" />
     <ProjectReference Include="..\Logic.Interface\Logic.Interface.csproj" />
+    <ProjectReference Include="..\Logic\Logic.csproj" />
   </ItemGroup>
 
 </Project>

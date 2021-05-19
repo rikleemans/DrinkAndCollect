@@ -6,10 +6,11 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Drawing;
 using System.Text;
+using Logic.Interface;
 
 namespace Logic
 {
-    public class BeerCollection
+    public class BeerCollection : IReadBeerCollection
     {
 
         private readonly IBeerCollection _dal;
@@ -25,7 +26,7 @@ namespace Logic
 
         }
 
-        public ReadOnlyCollection<Beer> GetAllBeerInfo()
+        public IReadOnlyCollection<IViewableBeer> GetAllBeerInfo()
         {
             _beerCollection.Clear();
             _dal.GetAllBeerInfo().ForEach(
@@ -33,14 +34,14 @@ namespace Logic
             return _beerCollection.AsReadOnly();
         }
 
-        public ReadOnlyCollection<BeernameDTO> GetAllBeer(string name)
+        public IReadOnlyCollection<BeernameDTO> GetAllBeer(string name)
         {
             _beername.Clear();
             _dal.GetAllBeer(name);
             return _beername.AsReadOnly();
         }
 
-        public bool AddBeer(Beer beer)
+        public bool AddBeer(IViewableBeer beer)
         {
             return _dal.AddBeer(beer.ConvertToDto());
         }

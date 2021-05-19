@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Logic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -12,11 +13,8 @@ namespace Test
     [TestMethod]
     public void BeerInfoSearch_User_Response()
     {
-        int number = 1;
-        string name = "kaas";
-        var expected = (number, number, number, number, name, name);
         var output = _beercollection.GetAllBeerInfo();
-        Assert.AreEqual(expected, output);
+        Assert.AreEqual(output.Count, 1);
     }
     [TestMethod]
     public void BeerNameSearch_User_Response()

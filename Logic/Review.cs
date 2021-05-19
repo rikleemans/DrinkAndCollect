@@ -2,10 +2,11 @@
 using Dal.Interface;
 using System;
 using System.Collections.Generic;
+using Logic.Interface;
 
 namespace Logic
 {
-    public class Review
+    public class Review : IViewableReview, IReadReview
     {
         #region properties
         public int ReviewID { get; }
@@ -57,9 +58,8 @@ namespace Logic
         //        return reviewlijst;
         //    }
         //}
-        public void UpdateReview(Review review)
+        public void UpdateReview(IViewableReview review)
         {
-            _review.Add(review);
             _dal.UpdateReview(review.ConvertToDto());
         }
     }

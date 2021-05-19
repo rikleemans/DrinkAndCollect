@@ -4,10 +4,11 @@ using Dal.Interface.Enums;
 using Org.BouncyCastle.Asn1.X509;
 using System.Collections.Generic;
 using System.Dynamic;
+using Logic.Interface;
 
 namespace Logic
 {
-    public class Beer
+    public class Beer : IViewableBeer, IReadBeer
     {
         #region properties
         public int ID { get; }
@@ -45,9 +46,9 @@ namespace Logic
             Description = dto.Description;
         }
 
-        public void UpdateBeer(Beer beer)
+        public void UpdateBeer(IViewableBeer beer)
         {
-            _Beer.Add(beer);
+            
             _dal.UpdateBeer(beer.ConvertToDto());
         }
 
