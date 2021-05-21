@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace DrinkAndCollectV4.Models
 {
-    public class UserViewModel
+    public partial class UserViewModel
     {
         public string Username { get; set; }
         public string Password { get; set; }

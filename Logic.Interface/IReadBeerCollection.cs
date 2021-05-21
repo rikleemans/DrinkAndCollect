@@ -7,13 +7,13 @@ namespace Logic.Interface
 {
     public interface IReadBeerCollection
     {
-        IReadOnlyCollection<IViewableBeer> GetAllBeerInfo();
-        IReadOnlyCollection<BeernameDTO> GetAllBeer(string name);
-        bool AddBeer(IViewableBeer beer);
-        bool RemoveBeer(int id);
-        bool AddCategory(string name);
-        bool RemoveCategory(int id);
-        bool AddStyle(string name);
-        bool RemoveStyle(int id);
+        public IReadOnlyCollection<IViewableBeer> GetAllBeerInfo();
+        public IReadOnlyCollection<BeernameDTO> GetAllBeer(string name);
+        public bool AddBeer(IViewableBeer beer);
+        public bool RemoveBeer(int id);
+        public bool AddCategory(string name);
+        public bool RemoveCategory(int id);
+        public bool AddStyle(string name);
+        public bool RemoveStyle(int id);
     }
 }

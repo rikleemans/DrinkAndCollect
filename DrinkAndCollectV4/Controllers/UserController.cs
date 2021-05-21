@@ -5,7 +5,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DrinkAndCollectV4.Models;
+using Logic.Factory;
 using Logic.Interface;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Org.BouncyCastle.Crypto.Engines;
 
 namespace DrinkAndCollectV4.Controllers
 {
@@ -14,10 +17,22 @@ namespace DrinkAndCollectV4.Controllers
     {
         
         // GET: UserController
-        public Task<UserViewModel[]> GetAllReviews()
+        public ActionResult GetAllReviews()
+
         {
-            return null;
+            
+            IReadUser user = UserFactory.CreateUserLogic();
+            List<ReviewViewModel> viewreview = new List<ReviewViewModel>();
+            IReadOnlyCollection<IViewableReview> reviews = user.GetAllReviews();
+
+            foreach (IViewableReview review in reviews)
+            {
+                viewreview.Add(new IViewableReview(review.ReviewID, review.UserID, review.BeerID, review.Rate, review.Taste, review.Description, review.Datum));
+            }
+
+            return View(viewreview);
         }
+
         // GET: UserController/Details/5
         public ActionResult Details(int id)
         {

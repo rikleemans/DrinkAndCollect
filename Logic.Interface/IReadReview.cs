@@ -2,6 +2,6 @@
 {
     public interface IReadReview
     {
-        void UpdateReview(IViewableReview review);
+        public void UpdateReview(IViewableReview review);
     }
 }

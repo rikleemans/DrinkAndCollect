@@ -2,6 +2,6 @@
 {
     public interface IReadBeer
     {
-        void UpdateBeer(IViewableBeer beer);
+       public void UpdateBeer(IViewableBeer beer);
     }
 }
