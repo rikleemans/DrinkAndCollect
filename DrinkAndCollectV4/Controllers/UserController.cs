@@ -27,7 +27,7 @@ namespace DrinkAndCollectV4.Controllers
 
             foreach (IViewableReview review in reviews)
             {
-                viewreview.Add(new IViewableReview(review.ReviewID, review.UserID, review.BeerID, review.Rate, review.Taste, review.Description, review.Datum));
+                viewreview.Add(new ReviewViewModel(review.ReviewID, review.UserID, review.BeerID, review.Rate, review.Taste, review.Description, review.Datum));
             }
 
             return View(viewreview);
