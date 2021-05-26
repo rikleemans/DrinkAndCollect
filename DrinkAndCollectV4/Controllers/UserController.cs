@@ -17,10 +17,9 @@ namespace DrinkAndCollectV4.Controllers
     {
         
         // GET: UserController
-        public ActionResult GetAllReviews()
+        public async Task<ActionResult> GetAllReviewsAsync()
 
         {
-            
             IReadUser user = UserFactory.CreateUserLogic();
             List<ReviewViewModel> viewreview = new List<ReviewViewModel>();
             IReadOnlyCollection<IViewableReview> reviews = user.GetAllReviews();
@@ -30,7 +29,7 @@ namespace DrinkAndCollectV4.Controllers
                 viewreview.Add(new ReviewViewModel(review.ReviewID, review.UserID, review.BeerID, review.Rate, review.Taste, review.Description, review.Datum));
             }
 
-            return View(viewreview);
+            return View (viewreview);
         }
 
         // GET: UserController/Details/5

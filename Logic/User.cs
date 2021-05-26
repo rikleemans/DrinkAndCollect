@@ -79,20 +79,20 @@ namespace Logic
                 dto => _review.Add(new Review(dto)));
             return _review.AsReadOnly();
         }
-        public IReadOnlyCollection<FriendDTO> GetAllFriends(int id)
+        public IReadOnlyCollection<IViewableFriend> GetAllFriends(int id)
         {
             _user.Clear();
             _dal.GetAllFriends(id).ForEach(
                 dto => _friend.Add(dto));
-            return _friend.AsReadOnly();
+            return (IReadOnlyCollection<IViewableFriend>)_friend.AsReadOnly();
         }
 
-        public IReadOnlyCollection<FriendCollectionDTO> GetFriendCollection(int id, int friendid)
+        public IReadOnlyCollection<IViewableFriendCollection> GetFriendCollection(int id, int friendid)
         {
             _user.Clear();
             _dal.GetFriendCollection(id, friendid).ForEach(
                 dto => _friendc.Add(dto));
-            return _friendc.AsReadOnly();
+            return (IReadOnlyCollection<IViewableFriendCollection>)_friendc.AsReadOnly();
         }
     }
 }

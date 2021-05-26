@@ -9,7 +9,7 @@ namespace Logic.Interface
         public IReadOnlyCollection<IViewableReview> GetAllReviews();
         public IReadOnlyCollection<IViewableReview> GetAllReviewsByUser(int id);
         public IReadOnlyCollection<IViewableReview> GetCollection(int id);
-        public IReadOnlyCollection<FriendDTO> GetAllFriends(int id);
-        public IReadOnlyCollection<FriendCollectionDTO> GetFriendCollection(int id, int friendid);
+        public IReadOnlyCollection<IViewableFriend> GetAllFriends(int id);
+        public IReadOnlyCollection<IViewableFriendCollection> GetFriendCollection(int id, int friendid);
     }
 }
