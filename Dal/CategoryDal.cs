@@ -8,12 +8,12 @@ namespace Dal
 {
     public class CategoryDal : ICategory
     {
-        public bool AddCategory(string category)
+        public bool AddCategory(CategoryDTO category)
         {
             using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DefaultConnection"));
-            DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("name", category);
-            var result = connection.Execute("dbo.InsertCategorie @name", parameters);
+            //DynamicParameters parameters = new DynamicParameters();
+            //parameters.Add("name", category);
+            var result = connection.Execute("dbo.InsertCategorie @catID, @category", category);
             if (result > 0)
             {
                 return true;
@@ -24,12 +24,10 @@ namespace Dal
 
             }
         }
-        public bool RemoveCategory(int id)
+        public bool RemoveCategory(CategoryDTO category)
         {
             using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DefaultConnection"));
-            DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("id", id);
-            var result = connection.Execute("dbo.DeleteCat @id", parameters);
+            var result = connection.Execute("dbo.DeleteCat @catID, @category", category);
             if (result > 0)
             {
                 return true;

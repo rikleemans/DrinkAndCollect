@@ -17,6 +17,10 @@ namespace DrinkAndCollectV4.Models
         public string Description { get; set; }
         public DateTime Datum { get; set; }
 
+        public ReviewViewModel()
+        {
+        }
+
         public ReviewViewModel(int reviewID, int userID, int beerID, int rate, string taste, string description, DateTime datum)
         {
             ReviewID = reviewID;

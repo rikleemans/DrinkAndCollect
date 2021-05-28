@@ -45,12 +45,10 @@ namespace Dal
             }
         }
 
-        public bool RemoveBeer(int id)
+        public bool RemoveBeer(BeerDTO beerDto)
         {
             using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DefaultConnection"));
-            DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("id", id);
-            var result = connection.Execute("dbo.RemoveBeer @id", parameters);
+            var result = connection.Execute("dbo.RemoveBeer @id, @catID, @styleID, @name, @description", beerDto);
             if (result > 0)
             {
                 return true;

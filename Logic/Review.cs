@@ -51,16 +51,13 @@ namespace Logic
         {
             return new ReviewDTO(ReviewID, UserID, BeerID, Rate, Taste, Description, Datum);
         }
-        //public class CallingClass{
-        //    private List<Review> reviewlijst = new List<Review>();
-        //    public List<Review> GetList()
-        //    {
-        //        return reviewlijst;
-        //    }
-        //}
-        public void UpdateReview(IViewableReview review)
+
+        public void UpdateReview(int reviewID, int userID, int beerID, int rate, string taste, string description, DateTime datum)
         {
+            var review = new Review(reviewID, userID, beerID, rate, taste, description, datum);
+            _review.Add(review);
             _dal.UpdateReview(review.ConvertToDto());
+            //_dal.UpdateReview(review.ConvertToDto());
         }
     }
 }

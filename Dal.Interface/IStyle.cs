@@ -7,7 +7,7 @@ namespace Dal.Interface
 {
     public interface IStyle
     {
-        public bool AddStyle(string category);
-        public bool RemoveStyle(int id);
+        public bool AddStyle(StyleDTO styles);
+        public bool RemoveStyle(StyleDTO styles);
     }
 }

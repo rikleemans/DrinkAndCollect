@@ -25,5 +25,9 @@ namespace Dal.Interface
             Firstname = firstname;
             Lastname = lastname;
         }
+        public FriendDTO ConvertToDto()
+        {
+            return new FriendDTO(UserID, FriendID, Username, Firstname, Lastname);
+        }
     }
 }

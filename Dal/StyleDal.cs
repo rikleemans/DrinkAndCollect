@@ -10,12 +10,10 @@ namespace Dal
 {
     public class StyleDal : IStyle
     {
-        public bool AddStyle(string style)
+        public bool AddStyle(StyleDTO styles)
         {
             using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DefaultConnection"));
-            DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("name", style);
-            var result = connection.Execute("dbo.InsertStyle @name", parameters);
+            var result = connection.Execute("dbo.InsertStyle @styleID, @style", styles);
             if (result > 0)
             {
                 return true;
@@ -26,12 +24,10 @@ namespace Dal
 
             }
         }
-        public bool RemoveStyle(int id)
+        public bool RemoveStyle(StyleDTO styles)
         {
             using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DefaultConnection"));
-            DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("id", id);
-            var result = connection.Execute("dbo.DeleteStyle @id", parameters);
+            var result = connection.Execute("dbo.DeleteStyle @styleID, @style", styles);
             if (result > 0)
             {
                 return true;

@@ -20,7 +20,7 @@ namespace Logic
         #endregion
 
         private readonly IBeer _dal;
-        private readonly List<Beer> _Beer = new List<Beer>();
+        private readonly List<Beer> _beer = new List<Beer>();
 
 
         public Beer(int id, int styleid, int catid, string name, string description)
@@ -46,10 +46,12 @@ namespace Logic
             Description = dto.Description;
         }
 
-        public void UpdateBeer(IViewableBeer beer)
+        public void UpdateBeer(int id, int styleid, int catid, string name, string description)
         {
-            
-            _dal.UpdateBeer(beer.ConvertToDto());
+            var review = new Beer(id, styleid, catid, name, description);
+            _beer.Add(review);
+            _dal.UpdateBeer(review.ConvertToDto());
+            //_dal.UpdateBeer(beer.ConvertToDto());
         }
 
         public BeerDTO ConvertToDto()

@@ -32,12 +32,10 @@ namespace Dal
             }
         }
 
-        public bool RemoveReview(int id)
+        public bool RemoveReview(ReviewDTO review)
         {
             using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DefaultConnection"));
-            DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("id", id);
-            var result = connection.Execute("dbo.RemoveReview @id", parameters);
+            var result = connection.Execute("dbo.RemoveReview @reviewID, @userID, @rate, @taste, @description, @createdOn", review);
             if (result > 0)
             {
                 return true;
@@ -48,10 +46,10 @@ namespace Dal
 
             }
         }
-        public bool AddFriend(UserDTO friends)
+        public bool AddFriend(FriendDTO friends)
         {
             using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DefaultConnection"));
-            var result = connection.Execute("dbo.AddFriend");
+            var result = connection.Execute("dbo.AddFriend @userID, @friendID, @username, @firstname, @lastname", friends);
             if (result > 0)
             {
                 return true;
@@ -63,12 +61,11 @@ namespace Dal
             }
         }
 
-        public bool RemoveFriend(int id)
+        public bool RemoveFriend(FriendDTO friends)
         {
             using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DefaultConnection"));
-            DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("id", id);
-            var result = connection.Execute("dbo.RemoveFriend @id", parameters);
+
+            var result = connection.Execute("dbo.RemoveFriend @userID, @friendID, @username, @firstname, @lastname", friends);
             if (result > 0)
             {
                 return true;

@@ -8,10 +8,10 @@ namespace Logic.Interface
 {
     public interface IReadUserCollection
     {
-        public bool AddReview(IViewableReview review);
-        public bool RemoveReview(int id);
-        public bool AddFriend(IViewableUser friend);
-        public bool RemoveFriend(int id);
+        public void AddReview(int reviewID, int userID, int beerID, int rate, string taste, string description, DateTime datum);
+        public void RemoveReview(int reviewID, int userID, int beerID, int rate, string taste, string description, DateTime datum);
+        public void AddFriend(int userID, int friendID, string username, string firstname, string lastname);
+        public void RemoveFriend(int userID, int friendID, string username, string firstname, string lastname);
         public void RateReview(int userID, int friendID, string username, string firstname, string lastname);
     }
 

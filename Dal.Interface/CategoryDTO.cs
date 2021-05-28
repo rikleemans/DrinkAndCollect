@@ -9,15 +9,20 @@ namespace Dal.Interface
     {
         #region properties
         [Key]
-        public string Categorie { get; }
+        public int CatID { get; }
+        public string Category { get; }
 
         #endregion
 
-        public CategoryDTO(string categorie)
+        public CategoryDTO(int catiD, string category)
         {
-            Categorie = categorie;
-
+            CatID = catiD;
+            Category = category;
         }
 
+        public CategoryDTO ConvertToDto()
+        {
+            return new CategoryDTO(CatID, Category);
+        }
     }
 }
