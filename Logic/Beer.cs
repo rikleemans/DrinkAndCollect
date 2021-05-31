@@ -46,11 +46,11 @@ namespace Logic
             Description = dto.Description;
         }
 
-        public void UpdateBeer(int id, int styleid, int catid, string name, string description)
+        public bool UpdateBeer(int id, int styleid, int catid, string name, string description)
         {
             var review = new Beer(id, styleid, catid, name, description);
             _beer.Add(review);
-            _dal.UpdateBeer(review.ConvertToDto());
+            return _dal.UpdateBeer(review.ConvertToDto());
             //_dal.UpdateBeer(beer.ConvertToDto());
         }
 

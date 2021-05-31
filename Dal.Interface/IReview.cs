@@ -6,6 +6,6 @@ namespace Dal.Interface
 {
     public interface IReview
     {
-        void UpdateReview(ReviewDTO review);
+        public bool UpdateReview(ReviewDTO review);
     }
 }

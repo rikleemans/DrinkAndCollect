@@ -52,11 +52,11 @@ namespace Logic
             return new ReviewDTO(ReviewID, UserID, BeerID, Rate, Taste, Description, Datum);
         }
 
-        public void UpdateReview(int reviewID, int userID, int beerID, int rate, string taste, string description, DateTime datum)
+        public bool UpdateReview(int reviewID, int userID, int beerID, int rate, string taste, string description, DateTime datum)
         {
             var review = new Review(reviewID, userID, beerID, rate, taste, description, datum);
             _review.Add(review);
-            _dal.UpdateReview(review.ConvertToDto());
+           return _dal.UpdateReview(review.ConvertToDto());
             //_dal.UpdateReview(review.ConvertToDto());
         }
     }

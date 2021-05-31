@@ -10,6 +10,6 @@ namespace Dal.Interface
         public List<BeerDTO> GetAllBeerInfo();
         public List<BeernameDTO> GetAllBeer(string name);
         public bool AddBeer(BeerDTO beer);
-        public bool RemoveBeer(BeerDTO beer);
+        public bool RemoveBeer(int id);
     }
 }

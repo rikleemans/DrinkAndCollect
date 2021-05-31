@@ -19,7 +19,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logic.Interface", "Logic.In
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logic.Factory", "Logic.Factory\Logic.Factory.csproj", "{95DA3CF5-65C7-4F2A-BEFE-CB6001513B92}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DrinkAndCollectServer", "DrinkAndCollectServer\DrinkAndCollectServer.csproj", "{1747C2B5-1146-44AA-9BCB-5EAAF1BDDDC4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DrinkAndCollectServer", "DrinkAndCollectServer\DrinkAndCollectServer.csproj", "{1747C2B5-1146-44AA-9BCB-5EAAF1BDDDC4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DrinkAndCollectV6", "DrinkAndCollectV6\DrinkAndCollectV6.csproj", "{4B21AFA8-B89D-40D2-9020-D2A7F2147844}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +65,10 @@ Global
 		{1747C2B5-1146-44AA-9BCB-5EAAF1BDDDC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1747C2B5-1146-44AA-9BCB-5EAAF1BDDDC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1747C2B5-1146-44AA-9BCB-5EAAF1BDDDC4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B21AFA8-B89D-40D2-9020-D2A7F2147844}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B21AFA8-B89D-40D2-9020-D2A7F2147844}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B21AFA8-B89D-40D2-9020-D2A7F2147844}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B21AFA8-B89D-40D2-9020-D2A7F2147844}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -8,6 +8,6 @@ namespace Dal.Interface
     public interface IStyle
     {
         public bool AddStyle(StyleDTO styles);
-        public bool RemoveStyle(StyleDTO styles);
+        public bool RemoveStyle(int id);
     }
 }

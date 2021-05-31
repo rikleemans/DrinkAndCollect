@@ -9,11 +9,11 @@ namespace Logic.Interface
     {
         public IReadOnlyCollection<IViewableBeer> GetAllBeerInfo();
         public IReadOnlyCollection<BeernameDTO> GetAllBeer(string name);
-        public void AddBeer(int id, int styleid, int catid, string name, string description);
-        public void RemoveBeer(int id, int styleid, int catid, string name, string description);
-        public void AddCategory(int catID, string category);
-        public void RemoveCategory(int catID, string category);
-        public void AddStyle(int styleID, string style);
-        public void RemoveStyle(int styleID, string style);
+        public bool AddBeer(int id, int styleid, int catid, string name, string description);
+        public bool RemoveBeer(int id);
+        public bool AddCategory(int catID, string category);
+        public bool RemoveCategory(int id);
+        public bool AddStyle(int styleID, string style);
+        public bool RemoveStyle(int id);
     }
 }

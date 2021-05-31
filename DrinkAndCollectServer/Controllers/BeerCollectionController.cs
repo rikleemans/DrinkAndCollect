@@ -41,19 +41,25 @@ namespace DrinkAndCollectServer.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async void AddBeer(BeerViewModel beer)
+        public ActionResult AddBeer(IFormCollection beer)
         {
-            IReadBeerCollection beers = BeerCollectionFactory.CreateBeerCollectionLogic();
-
             try
             {
-                beers.AddBeer(beer.ID, beer.StyleID, beer.CatID, beer.Name, beer.Description);
+                IReadBeerCollection beers = BeerCollectionFactory.CreateBeerCollectionLogic();
+
+                if (beers.AddBeer(Convert.ToInt32(beer["ID"]), Convert.ToInt32(beer["StyleID"]), Convert.ToInt32(beer["CatID"]), beer["Name"], beer["Description"]))
+                {
+                    return RedirectToAction(nameof(Index));
+                }
+                else
+                {
+                    return View();
+                }
             }
             catch
             {
-                View();
+                return View();
             }
-
         }
 
         [HttpDelete]

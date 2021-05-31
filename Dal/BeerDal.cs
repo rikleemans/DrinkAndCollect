@@ -11,10 +11,20 @@ namespace Dal
 {
     public class BeerDal : IBeer
     {
-        public void UpdateBeer(BeerDTO beerDTO)
+        public bool UpdateBeer(BeerDTO beerDTO)
         {
             using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DefaultConnection"));
-            connection.Execute("dbo.UpdateBeer @id, @styleID, @catID, @name, @description", beerDTO);
+           var result =  connection.Execute("dbo.UpdateBeer @id, @styleID, @catID, @name, @description", beerDTO);
+
+            if (result > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+
+            }
         }
     }
 }

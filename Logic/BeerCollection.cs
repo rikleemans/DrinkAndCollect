@@ -15,7 +15,7 @@ namespace Logic
 
         private readonly IBeerCollection _dal;
         private readonly List<Beer> _beerCollection = new List<Beer>();
-        private readonly List<BeernameDTO> _beername = new List<BeernameDTO>();
+        private List<BeernameDTO> _beername = new List<BeernameDTO>();
         private readonly List<BeerDTO> _beer = new List<BeerDTO>();
         private readonly List<StyleDTO> _style= new List<StyleDTO>();
         private readonly List<CategoryDTO> _category = new List<CategoryDTO>();
@@ -39,54 +39,50 @@ namespace Logic
         public IReadOnlyCollection<BeernameDTO> GetAllBeer(string name)
         {
             _beername.Clear();
-            _dal.GetAllBeer(name);
+            _beername = _dal.GetAllBeer(name);
             return _beername.AsReadOnly();
         }
 
-        public void AddBeer(int id, int styleid, int catid, string name, string description)
+        public bool AddBeer(int id, int styleid, int catid, string name, string description)
         {
             var beer = new Beer(id, styleid, catid, name, description);
             _beerCollection.Add(beer);
-            _dal.AddBeer(beer.ConvertToDto());
+            return _dal.AddBeer(beer.ConvertToDto());
             //return _dal.AddBeer(beer.ConvertToDto());
         }
 
-        public void RemoveBeer(int id, int styleid, int catid, string name, string description)
+        public bool RemoveBeer(int id)
         {
-            var beer = new Beer(id, styleid, catid, name, description);
-            _beerCollection.Add(beer);
-            _dal.RemoveBeer(beer.ConvertToDto());
+            return _dal.RemoveBeer(id);
             //return _dal.RemoveBeer(id);
         }
-        public void AddCategory(int catID, string category)
+        public bool AddCategory(int catID, string category)
         {
             var categories = new CategoryDTO(catID, category);
             _category.Add(categories);
-            _dalcat.AddCategory(categories.ConvertToDto());
+           return _dalcat.AddCategory(categories.ConvertToDto());
             //return _dalcat.AddCategory(name);
         }
 
-        public void RemoveCategory(int catID, string category)
+        public bool RemoveCategory(int id)
         {
-            var categories = new CategoryDTO(catID, category);
-            _category.Add(categories);
-            _dalcat.RemoveCategory(categories.ConvertToDto());
+           return _dalcat.RemoveCategory(id);
             //return _dalcat.RemoveCategory(id);
         }
-        public void AddStyle(int styleID, string style)
+        public bool AddStyle(int styleID, string style)
         {
             var styles = new StyleDTO(styleID, style);
             _style.Add(styles);
-            _dalstyle.AddStyle(styles.ConvertToDto());
+           return _dalstyle.AddStyle(styles.ConvertToDto());
             //return _dalstyle.AddStyle(name);
         }
 
-        public void RemoveStyle(int styleID, string style)
+        public bool RemoveStyle(int id)
         {
-            var styles = new StyleDTO(styleID, style);
-            _style.Add(styles);
-            _dalstyle.RemoveStyle(styles.ConvertToDto());
+           return _dalstyle.RemoveStyle(id);
             //return _dalstyle.RemoveStyle(id);
         }
+
+       
     }
 }

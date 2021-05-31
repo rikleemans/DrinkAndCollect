@@ -24,10 +24,10 @@ namespace Dal
 
             }
         }
-        public bool RemoveCategory(CategoryDTO category)
+        public bool RemoveCategory(int id)
         {
             using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DefaultConnection"));
-            var result = connection.Execute("dbo.DeleteCat @catID, @category", category);
+            var result = connection.Execute("dbo.DeleteCat @catID", id);
             if (result > 0)
             {
                 return true;
