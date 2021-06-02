@@ -8,11 +8,11 @@ namespace Logic.Interface
     public interface IViewableCategory
     {
         public int CatID { get; }
-        public string Category{ get; }
-
+        public string Name { get; }
+        
         public CategoryDTO ConvertToDto()
         {
-            return new CategoryDTO(CatID, Category);
+            return new CategoryDTO(CatID, Name);
         }
     }
 }

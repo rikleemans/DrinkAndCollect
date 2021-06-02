@@ -10,18 +10,22 @@ namespace Dal.Interface
         #region properties
         [Key]
         public int StyleID { get; }
-        public string Style { get; }
+        public string Name { get; }
 
         #endregion
 
-        public StyleDTO(int styleID, string style)
+        public StyleDTO()
+        {
+
+        }
+        public StyleDTO(int styleID, string name)
         {
             StyleID = styleID;
-            Style = style;
+            Name = name;
         }
         public StyleDTO ConvertToDto()
         {
-            return new StyleDTO(StyleID, Style);
+            return new StyleDTO(StyleID, Name);
         }
     }
 }

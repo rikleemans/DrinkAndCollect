@@ -21,6 +21,11 @@ namespace Dal.Interface
         {
 
         }
+
+        public BeerDTO(int id)
+        {
+            ID = id;
+        }
         #endregion
         public BeerDTO(int id, int styleid, int catid, string name, string description)
         {

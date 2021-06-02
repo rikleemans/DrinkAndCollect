@@ -7,13 +7,17 @@ namespace DrinkAndCollectV6.Models
 {
     public class CategoryViewModel
     {
-        public string Categorie { get; }
         public int CatID { get; }
+        public string Name { get; }
 
-        public CategoryViewModel(string categorie, int catiD)
+        public CategoryViewModel()
         {
-            Categorie = categorie;
-            CatID = catiD;
+
+        }
+        public CategoryViewModel(int catID, string name)
+        {
+            CatID = catID;
+            Name = name;
         }
     }
 }

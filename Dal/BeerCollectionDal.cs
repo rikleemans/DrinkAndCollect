@@ -17,7 +17,6 @@ namespace Dal
 
             var output = connection.Query<BeerDTO>("dbo.GetAllBeerInfo").ToList();
             return output;
-
         }
 
         public List<BeernameDTO> GetAllBeer(string name)
@@ -48,7 +47,9 @@ namespace Dal
         public bool RemoveBeer(int id)
         {
             using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DefaultConnection"));
-            var result = connection.Execute("dbo.RemoveBeer @id", id);
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("@id", id);
+            var result = connection.Execute("dbo.RemoveBeer @id", parameters);
             if (result > 0)
             {
                 return true;

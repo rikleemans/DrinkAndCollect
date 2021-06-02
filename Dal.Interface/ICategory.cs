@@ -7,7 +7,8 @@ namespace Dal.Interface
 {
     public interface ICategory
     {
-        public bool AddCategory(CategoryDTO categories);
+        public List<CategoryDTO> GetAllCategory();
+       bool AddCategory(CategoryDTO category);
         public bool RemoveCategory(int id);
 
     }

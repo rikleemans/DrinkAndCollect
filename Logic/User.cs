@@ -53,11 +53,7 @@ namespace Logic
         {
             return new UserDTO(Username, Password, Firstname, Lastname, Admin, Friend);
         }
-        //public void UpdateAccount(User user)
-        //{
-        //    _user.Add(user);
-        //    _dal.UpdateAccount(user.ConvertToDto());
-        //}
+
         public IReadOnlyCollection<IViewableReview> GetAllReviews()
         {
             _review.Clear();
@@ -93,6 +89,20 @@ namespace Logic
             _dal.GetFriendCollection(id, friendid).ForEach(
                 dto => _friendc.Add(dto));
             return (IReadOnlyCollection<IViewableFriendCollection>)_friendc.AsReadOnly();
+        }
+
+        public bool AddFriend(int userID, int friendID, string username, string firstname, string lastname)
+        {
+            var friend = new FriendDTO(userID, friendID, username, firstname, lastname);
+            _friend.Add(friend);
+            return _dal.AddFriend(friend.ConvertToDto());
+            //return _dal.AddFriend(friend.ConvertToDto());
+        }
+
+        public bool RemoveFriend(int userID, int friendID)
+        {
+            return _dal.RemoveFriend(userID, friendID);
+            //return _dal.RemoveFriend(id);
         }
     }
 }

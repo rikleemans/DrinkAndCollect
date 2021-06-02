@@ -36,6 +36,11 @@ namespace Logic
         {
 
         }
+        public Beer(int id)
+        {
+            _dal = BeerFactory.CreateBeerDal();
+            ID = id;
+        }
 
         public Beer(BeerDTO dto)
         {
@@ -48,9 +53,9 @@ namespace Logic
 
         public bool UpdateBeer(int id, int styleid, int catid, string name, string description)
         {
-            var review = new Beer(id, styleid, catid, name, description);
-            _beer.Add(review);
-            return _dal.UpdateBeer(review.ConvertToDto());
+            var beer = new Beer(id, styleid, catid, name, description);
+            _beer.Add(beer);
+            return _dal.UpdateBeer(beer.ConvertToDto());
             //_dal.UpdateBeer(beer.ConvertToDto());
         }
 

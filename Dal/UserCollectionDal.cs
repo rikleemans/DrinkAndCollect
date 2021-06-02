@@ -46,38 +46,6 @@ namespace Dal
 
             }
         }
-        public bool AddFriend(FriendDTO friends)
-        {
-            using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DefaultConnection"));
-            var result = connection.Execute("dbo.AddFriend @userID, @friendID, @username, @firstname, @lastname", friends);
-            if (result > 0)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-
-            }
-        }
-
-        public bool RemoveFriend(int userID, int friendID)
-        {
-            using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DefaultConnection"));
-            DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("@userID", userID);
-            parameters.Add("@friendID", friendID);
-            var result = connection.Execute("dbo.RemoveFriend @userID, @friendID, @username, @firstname, @lastname", parameters);
-            if (result > 0)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-
-            }
-        }
 
         public void RateReview(UserDTO rate)
         {

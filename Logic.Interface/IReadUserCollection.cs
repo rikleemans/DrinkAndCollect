@@ -10,8 +10,6 @@ namespace Logic.Interface
     {
         public bool AddReview(int reviewID, int userID, int beerID, int rate, string taste, string description, DateTime datum);
         public bool RemoveReview(int id);
-        public bool AddFriend(int userID, int friendID, string username, string firstname, string lastname);
-        public bool RemoveFriend(int userID, int friendID);
         public void RateReview(int userID, int friendID, string username, string firstname, string lastname);
     }
 

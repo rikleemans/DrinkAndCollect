@@ -13,74 +13,71 @@ namespace DrinkAndCollectV6.Controllers
     public class UserController : Controller
     {
         // GET: UserController
-        public ActionResult Index()
-        {
-            IReadUser user = UserFactory.CreateUserLogic();
-            List<ReviewViewModel> reviewview = new List<ReviewViewModel>();
-            IReadOnlyCollection<IViewableReview> reviews = user.GetAllReviews();
-
-            foreach (IViewableReview review in reviews)
-            {
-                reviewview.Add(new ReviewViewModel(review.ReviewID, review.UserID, review.BeerID, review.Rate, review.Taste, review.Description, review.Datum));
-            }
-
-            return View(reviewview);
-        }
-
-        public ActionResult ReviewsByUser(int id)
-        {
-            IReadUser user = UserFactory.CreateUserLogic();
-            List<ReviewViewModel> reviewview = new List<ReviewViewModel>();
-            IReadOnlyCollection<IViewableReview> reviews = user.GetAllReviewsByUser(id);
-
-            foreach (IViewableReview review in reviews)
-            {
-                reviewview.Add(new ReviewViewModel(review.ReviewID, review.UserID, review.BeerID, review.Rate, review.Taste, review.Description, review.Datum));
-            }
-
-            return View(reviewview);
-        }
 
         public ActionResult GetCollection(int id)
         {
             IReadUser user = UserFactory.CreateUserLogic();
             List<ReviewViewModel> viewcollection = new List<ReviewViewModel>();
-            IReadOnlyCollection<IViewableReview> reviews = user.GetCollection(id);
-
-            foreach (IViewableReview review in reviews)
+            try
             {
-                viewcollection.Add(new ReviewViewModel(review.ReviewID, review.UserID, review.BeerID, review.Rate, review.Taste, review.Description, review.Datum));
-            }
+                IReadOnlyCollection<IViewableReview> reviews = user.GetCollection(id);
 
-            return View(viewcollection);
+                foreach (IViewableReview review in reviews)
+                {
+                    viewcollection.Add(new ReviewViewModel(review.ReviewID, review.UserID, review.BeerID, review.Rate,
+                        review.Taste, review.Description, review.Datum));
+                }
+
+                return View(viewcollection);
+            }
+            catch
+            {
+                return View();
+            }
         }
 
         public ActionResult GetAllFriends(int id)
         {
             IReadUser users = UserFactory.CreateUserLogic();
             List<FriendViewModel> viewfriends = new List<FriendViewModel>();
-            IReadOnlyCollection<IViewableFriend> friends = users.GetAllFriends(id);
-
-            foreach (IViewableFriend user in friends)
+            try
             {
-                viewfriends.Add(new FriendViewModel(user.UserID, user.FriendID, user.Username, user.Firstname, user.Lastname));
-            }
+                IReadOnlyCollection<IViewableFriend> friends = users.GetAllFriends(id);
 
-            return View(viewfriends);
+                foreach (IViewableFriend user in friends)
+                {
+                    viewfriends.Add(new FriendViewModel(user.UserID, user.FriendID, user.Username, user.Firstname,
+                        user.Lastname));
+                }
+
+                return View(viewfriends);
+            }
+            catch
+            {
+                return View();
+            }
         }
 
         public ActionResult GetFriendCollectionAsync(int id, int friendid)
         {
             IReadUser user = UserFactory.CreateUserLogic();
             List<FriendCollectionViewModel> viewcollection = new List<FriendCollectionViewModel>();
-            IReadOnlyCollection<IViewableFriendCollection> friends = user.GetFriendCollection(id, friendid);
-
-            foreach (IViewableFriendCollection friend in friends)
+            try
             {
-                viewcollection.Add(new FriendCollectionViewModel(friend.ReviewID, friend.FriendID, friend.BeerID, friend.Rate, friend.Taste, friend.Description, friend.Datum));
-            }
+                IReadOnlyCollection<IViewableFriendCollection> friends = user.GetFriendCollection(id, friendid);
 
-            return View(viewcollection);
+                foreach (IViewableFriendCollection friend in friends)
+                {
+                    viewcollection.Add(new FriendCollectionViewModel(friend.ReviewID, friend.FriendID, friend.BeerID,
+                        friend.Rate, friend.Taste, friend.Description, friend.Datum));
+                }
+
+                return View(viewcollection);
+            }
+            catch
+            {
+                return View();
+            }
         }
     }
 }

@@ -27,25 +27,12 @@ namespace Logic
                 return _dal.AddReview(review.ConvertToDto());
                 //return _dal.AddReview(review.ConvertToDto());
         }
-        // alleen id meegeven
+
         public bool RemoveReview(int id)
         {
 
             return _dal.RemoveReview(id);
             //return _dal.RemoveReview(id);
-        }
-        public bool AddFriend(int userID, int friendID, string username, string firstname, string lastname)
-        {
-            var friend = new FriendDTO(userID, friendID, username, firstname, lastname);
-            _friend.Add(friend);
-            return _dal.AddFriend(friend.ConvertToDto());
-            //return _dal.AddFriend(friend.ConvertToDto());
-        }
-
-        public bool RemoveFriend(int userID, int friendID)
-        {
-           return _dal.RemoveFriend(userID, friendID);
-            //return _dal.RemoveFriend(id);
         }
         public void RateReview(int userID, int friendID, string username, string firstname, string lastname)
         {

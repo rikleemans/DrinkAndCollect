@@ -11,5 +11,7 @@ namespace Logic.Interface
         public IReadOnlyCollection<IViewableReview> GetCollection(int id);
         public IReadOnlyCollection<IViewableFriend> GetAllFriends(int id);
         public IReadOnlyCollection<IViewableFriendCollection> GetFriendCollection(int id, int friendid);
+        public bool AddFriend(int userID, int friendID, string username, string firstname, string lastname);
+        public bool RemoveFriend(int userID, int friendID);
     }
 }

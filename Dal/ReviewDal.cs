@@ -13,10 +13,19 @@ namespace Dal
     public class ReviewDal : IReview
     {
 
-        public void UpdateReview(ReviewDTO review)
+        public bool UpdateReview(ReviewDTO review)
         {
             using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DefaultConnection"));
-            connection.Execute("dbo.UpdateReview @reviewID, @userID, @rate, @taste, @description, @createdOn", review);
+            var result = connection.Execute("dbo.UpdateReview @reviewID, @userID, @rate, @taste, @description, @createdOn", review);
+            if (result > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+
+            }
         }
     }
 }

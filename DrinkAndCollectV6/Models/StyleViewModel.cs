@@ -7,13 +7,13 @@ namespace DrinkAndCollectV6.Models
 {
     public class StyleViewModel
     {
-        public string Style { get; }
         public int StyleID { get; }
+        public string Name { get; }
 
-        public StyleViewModel(string style, int styleID)
+        public StyleViewModel(int styleID, string name)
         {
-            Style = style;
             StyleID = styleID;
+            Name = name;
         }
     }
 }

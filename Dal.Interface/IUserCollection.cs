@@ -8,8 +8,6 @@ namespace Dal.Interface
     {
         bool AddReview(ReviewDTO review);
         bool RemoveReview(int id);
-        bool AddFriend(FriendDTO friend);
-        bool RemoveFriend(int userID, int friendID);
         void RateReview(UserDTO rate);
     }
 

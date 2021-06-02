@@ -79,7 +79,7 @@ namespace DrinkAndCollectV6.Controllers
         {
             try
             {
-                IReadUserCollection users = UserCollectionFactory.CreateUserCollectionLogic();
+                IReadUser users = UserFactory.CreateUserLogic();
 
                 if (users.AddFriend(Convert.ToInt32(friend["UserID"]), Convert.ToInt32(friend["FriendID"]), friend["Username"], friend["Firstname"], friend["Lastname"]))
                 {
@@ -105,7 +105,7 @@ namespace DrinkAndCollectV6.Controllers
         // POST: UserController/Delete/5
         public ActionResult DeleteFriend(int userID, int friendID)
         {
-            IReadUserCollection users = UserCollectionFactory.CreateUserCollectionLogic();
+            IReadUser users = UserFactory.CreateUserLogic();
             try
             {
                 users.RemoveFriend(userID, friendID);
