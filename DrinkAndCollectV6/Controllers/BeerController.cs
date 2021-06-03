@@ -29,8 +29,9 @@ namespace DrinkAndCollectV6.Controllers
 
                 return View(beerViewModels);
             }
-            catch
+            catch(Exception ex)
             {
+                ViewData["bericht"] = ex.Message;
                 return View();
             }
 

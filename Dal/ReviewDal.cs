@@ -15,16 +15,27 @@ namespace Dal
 
         public bool UpdateReview(ReviewDTO review)
         {
-            using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DefaultConnection"));
-            var result = connection.Execute("dbo.UpdateReview @reviewID, @userID, @rate, @taste, @description, @createdOn", review);
-            if (result > 0)
+            try
             {
-                return true;
-            }
-            else
-            {
-                return false;
+                using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DefaultConnection"));
+                var result = connection.Execute("dbo.UpdateReview @reviewID, @userID, @rate, @taste, @description, @createdOn", review);
+                if (result > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
 
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception("database werkt niet mee");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("database werkt niet mee");
             }
         }
     }
