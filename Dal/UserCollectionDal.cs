@@ -12,15 +12,13 @@ namespace Dal
 {
     public class UserCollectionDal : IUserCollection
     {
-        public UserCollectionDal()
-        {
-
-        }
 
         public bool AddReview(ReviewDTO review)
         {
+            try
+            {
             using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DefaultConnection"));
-            var result = connection.Execute("dbo.InsertReview @reviewID, @userID, @rate, @taste, @description, @createdOn", review);
+            var result = connection.Execute("dbo.AddReview @reviewID, @userID, @beerID, @rate, @taste, @description, @datum", review);
             if (result > 0)
             {
                 return true;
@@ -29,13 +27,26 @@ namespace Dal
             {
                 return false;
 
+            }
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception("Database cannot connect, try again");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Something went wrong, try again");
             }
         }
 
         public bool RemoveReview(int id)
         {
+            try
+            {
             using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DefaultConnection"));
-            var result = connection.Execute("dbo.RemoveReview @reviewID", id);
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("@reviewID", id);
+            var result = connection.Execute("dbo.DeleteReview @reviewID", parameters);
             if (result > 0)
             {
                 return true;
@@ -44,6 +55,15 @@ namespace Dal
             {
                 return false;
 
+            }
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception("Database cannot connect, try again");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Something went wrong, try again");
             }
         }
 

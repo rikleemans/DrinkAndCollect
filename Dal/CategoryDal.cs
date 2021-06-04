@@ -1,4 +1,5 @@
-﻿using Dal.Interface;
+﻿using System;
+using Dal.Interface;
 using Dapper;
 using System.Collections.Generic;
 using System.Data;
@@ -11,14 +12,27 @@ namespace Dal
     {
         public List<CategoryDTO> GetAllCategory()
         {
+            try
+            {
             using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DefaultConnection"));
 
             var output = connection.Query<CategoryDTO>("dbo.GetAllCategory").ToList();
             return output;
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception("Database cannot connect, try again");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Something went wrong, try again");
+            }
 
         }
         public bool AddCategory(CategoryDTO category)
         {
+            try
+            {
             using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DefaultConnection"));
 
             var result = connection.Execute("dbo.AddCategory @catID, @name", category);
@@ -31,9 +45,20 @@ namespace Dal
                 return false;
 
             }
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception("Database cannot connect, try again");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Something went wrong, try again");
+            }
         }
         public bool RemoveCategory(int id)
         {
+            try
+            {
             using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DefaultConnection"));
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add("@catID", id);
@@ -45,6 +70,15 @@ namespace Dal
             else
             {
                 return false;
+            }
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception("Database cannot connect, try again");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Something went wrong, try again");
             }
         }
     }

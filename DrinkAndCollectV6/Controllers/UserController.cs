@@ -30,30 +30,31 @@ namespace DrinkAndCollectV6.Controllers
 
                 return View(viewcollection);
             }
-            catch
+            catch (Exception ex)
             {
+                ViewData["bericht"] = ex.Message;
                 return View();
             }
         }
 
-        public ActionResult GetAllFriends(int id)
+        public ActionResult Index(string id = "f2a62e83-d2f3-4293-8b90-a0c8cfc36dec")
         {
-            IReadUser users = UserFactory.CreateUserLogic();
-            List<FriendViewModel> viewfriends = new List<FriendViewModel>();
             try
             {
-                IReadOnlyCollection<IViewableFriend> friends = users.GetAllFriends(id);
+                IReadUser users = UserFactory.CreateUserLogic();
+                List<FriendViewModel> viewfriends = new List<FriendViewModel>();
 
+                IReadOnlyCollection<IViewableFriend> friends = users.GetAllFriends(id);
                 foreach (IViewableFriend user in friends)
                 {
-                    viewfriends.Add(new FriendViewModel(user.UserID, user.FriendID, user.Username, user.Firstname,
-                        user.Lastname));
+                    viewfriends.Add(new FriendViewModel(user.UserID, user.FriendID, user.Username));
                 }
 
                 return View(viewfriends);
             }
-            catch
+            catch (Exception ex)
             {
+                ViewData["bericht"] = ex.Message;
                 return View();
             }
         }
@@ -74,8 +75,54 @@ namespace DrinkAndCollectV6.Controllers
 
                 return View(viewcollection);
             }
-            catch
+            catch (Exception ex)
             {
+                ViewData["bericht"] = ex.Message;
+                return View();
+            }
+        }
+
+        public ActionResult AddFriend()
+        {
+            return View();
+        }
+
+        // POST: UserController/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddFriend(IFormCollection friend)
+        {
+            try
+            {
+                IReadUser users = UserFactory.CreateUserLogic();
+
+                if (users.AddFriend(friend["UserID"], friend["FriendID"], friend["Username"]))
+                {
+                    return RedirectToAction(nameof(Index));
+                }
+                else
+                {
+                    return View();
+                }
+            }
+            catch (Exception ex)
+            {
+                ViewData["bericht"] = ex.Message;
+                return View();
+            }
+        }
+
+        public ActionResult DeleteFriend(string userID, string friendID)
+        {
+            IReadUser users = UserFactory.CreateUserLogic();
+            try
+            {
+                users.RemoveFriend(userID, friendID);
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception ex)
+            {
+                ViewData["bericht"] = ex.Message;
                 return View();
             }
         }

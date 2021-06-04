@@ -19,19 +19,16 @@ namespace Logic
         public int Admin { get; }
         public int Friend { get; }
 
+
         private readonly IUser _dal;
         private readonly List<User> _user = new List<User>();
         private readonly List<Review> _review = new List<Review>();
         private readonly List<FriendDTO> _friend = new List<FriendDTO>();
         private readonly List<FriendCollectionDTO> _friendc = new List<FriendCollectionDTO>();
+        private readonly List<Friend> _friends = new List<Friend>();
 
-        public User()
-        {
-
-        }
         public User(string username, string password, string firstname, string lastname, int admin, int friend)
         {
-            _dal = UserFactory.CreateUserDal();
             Username = username;
             Password = password;
             Firstname = firstname;
@@ -40,6 +37,10 @@ namespace Logic
             Friend = friend;
         }
 
+        public User()
+        {
+            _dal = UserFactory.CreateUserDal();
+        }
         public User(UserDTO dto)
         {
             Username = dto.Username;
@@ -75,12 +76,12 @@ namespace Logic
                 dto => _review.Add(new Review(dto)));
             return _review.AsReadOnly();
         }
-        public IReadOnlyCollection<IViewableFriend> GetAllFriends(int id)
+        public IReadOnlyCollection<IViewableFriend> GetAllFriends(string id)
         {
-            _user.Clear();
+            _friends.Clear();
             _dal.GetAllFriends(id).ForEach(
-                dto => _friend.Add(dto));
-            return (IReadOnlyCollection<IViewableFriend>)_friend.AsReadOnly();
+                dto => _friends.Add(new Friend(dto)));
+            return _friends.AsReadOnly();
         }
 
         public IReadOnlyCollection<IViewableFriendCollection> GetFriendCollection(int id, int friendid)
@@ -91,15 +92,15 @@ namespace Logic
             return (IReadOnlyCollection<IViewableFriendCollection>)_friendc.AsReadOnly();
         }
 
-        public bool AddFriend(int userID, int friendID, string username, string firstname, string lastname)
+        public bool AddFriend(string userID, string friendID, string username)
         {
-            var friend = new FriendDTO(userID, friendID, username, firstname, lastname);
+            var friend = new FriendDTO(userID, friendID, username);
             _friend.Add(friend);
             return _dal.AddFriend(friend.ConvertToDto());
             //return _dal.AddFriend(friend.ConvertToDto());
         }
 
-        public bool RemoveFriend(int userID, int friendID)
+        public bool RemoveFriend(string userID, string friendID)
         {
             return _dal.RemoveFriend(userID, friendID);
             //return _dal.RemoveFriend(id);

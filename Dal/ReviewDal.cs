@@ -31,11 +31,11 @@ namespace Dal
             }
             catch (SqlException ex)
             {
-                throw new Exception("database werkt niet mee");
+                throw new Exception("Database cannot connect, try again");
             }
             catch (Exception ex)
             {
-                throw new Exception("database werkt niet mee");
+                throw new Exception("Something went wrong, try again");
             }
         }
     }

@@ -6,28 +6,25 @@ namespace Dal.Interface
 {
     public class FriendDTO
     {
-        public int UserID { get; }
-        public int FriendID { get; }
+        public string UserID { get; }
+        public string FriendID { get; }
         public string Username { get; }
-        public string Firstname { get; }
-        public string Lastname { get; }
 
         public FriendDTO()
         {
 
         }
 
-        public FriendDTO(int userID, int friendID, string username, string firstname, string lastname)
+        public FriendDTO(string userID, string friendID, string username)
         {
             UserID = userID;
             FriendID = friendID;
             Username = username;
-            Firstname = firstname;
-            Lastname = lastname;
+
         }
         public FriendDTO ConvertToDto()
         {
-            return new FriendDTO(UserID, FriendID, Username, Firstname, Lastname);
+            return new FriendDTO(UserID, FriendID, Username);
         }
     }
 }

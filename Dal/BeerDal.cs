@@ -11,10 +11,12 @@ namespace Dal
 {
     public class BeerDal : IBeer
     {
-        public bool UpdateBeer(BeerDTO beerDTO)
+        public bool UpdateBeer(BeerDTO beer)
         {
+            try
+            {
             using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DefaultConnection"));
-           var result =  connection.Execute("dbo.UpdateBeer @id, @styleID, @catID, @name, @description", beerDTO);
+           var result =  connection.Execute("dbo.UpdateBeer @id, @styleID, @catID, @name, @description", beer);
 
             if (result > 0)
             {
@@ -24,6 +26,15 @@ namespace Dal
             {
                 return false;
 
+            }
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception("Database cannot connect, try again");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Something went wrong, try again");
             }
         }
     }

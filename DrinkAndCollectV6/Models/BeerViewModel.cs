@@ -8,7 +8,7 @@ namespace DrinkAndCollectV6.Models
 {
     public class BeerViewModel
     {
-        [Required]
+
         public int ID { get; }
         public int StyleID { get; }
         public int CatID { get; }

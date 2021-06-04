@@ -8,9 +8,9 @@ namespace Dal.Interface
     public class ReviewDTO
     {
         #region properties
-        [Key]
+
         public int ReviewID { get; }
-        public int UserID { get; }
+        public string UserID { get; }
         public int BeerID { get; }
         public int Rate { get; }
         public string Taste { get; }
@@ -18,7 +18,7 @@ namespace Dal.Interface
         public DateTime Datum { get; }
         #endregion
 
-        public ReviewDTO(int reviewID, int userID, int beerID, int rate, string taste, string description, DateTime datum)
+        public ReviewDTO(int reviewID, string userID, int beerID, int rate, string taste, string description, DateTime datum)
         {
             ReviewID = reviewID;
             UserID = userID;

@@ -7,19 +7,15 @@ namespace DrinkAndCollectV6.Models
 {
     public class FriendViewModel
     {
-        public int UserID { get; }
-        public int FriendID { get; }
+        public string UserID { get; }
+        public string FriendID { get; }
         public string Username { get; }
-        public string Firstname { get; }
-        public string Lastname { get; }
 
-        public FriendViewModel(int userID, int friendID, string username, string firstname, string lastname)
+        public FriendViewModel(string userID, string friendID, string username)
         {
             UserID = userID;
             FriendID = friendID;
             Username = username;
-            Firstname = firstname;
-            Lastname = lastname;
         }
     }
 }

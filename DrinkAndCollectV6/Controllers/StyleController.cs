@@ -16,7 +16,7 @@ namespace DrinkAndCollectV6.Controllers
         // GET: BeerController
         public ActionResult Index()
         {
-            IReadBeerCollection beerc = BeerCollectionFactory.CreateBeerCollectionLogic();
+            IReadStyle beerc = StyleFactory.CreateStyleLogic();
             List<StyleViewModel> styleViewModels = new List<StyleViewModel>();
             try
             {
@@ -29,8 +29,9 @@ namespace DrinkAndCollectV6.Controllers
 
                 return View(styleViewModels);
             }
-            catch
+            catch (Exception ex)
             {
+                ViewData["bericht"] = ex.Message;
                 return View();
             }
         }
@@ -49,9 +50,9 @@ namespace DrinkAndCollectV6.Controllers
 
             try
             {
-                IReadBeerCollection styles = BeerCollectionFactory.CreateBeerCollectionLogic();
+                IReadStyle styles = StyleFactory.CreateStyleLogic();
 
-                if(styles.AddStyle(Convert.ToInt32(style["StyleID"]), style["Style"]))
+                if (styles.AddStyle(Convert.ToInt32(style["StyleID"]), style["Name"]))
                 {
                     return RedirectToAction(nameof(Index));
                 }
@@ -60,32 +61,26 @@ namespace DrinkAndCollectV6.Controllers
                     return View();
                 }
             }
-            catch
+            catch (Exception ex)
             {
+                ViewData["bericht"] = ex.Message;
                 return View();
             }
         }
 
-        // GET: BeerController/Delete/5
-        //public ActionResult RemoveStyle(int id)
-        //{
-        //    return View();
-        //}
-
-        // POST: BeerController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult RemoveStyle(int id)
         {
-            IReadBeerCollection styles = BeerCollectionFactory.CreateBeerCollectionLogic();
-
             try
             {
-                styles.RemoveBeer(id);
-                return View();
+                IReadStyle styles = StyleFactory.CreateStyleLogic();
+
+                styles.RemoveStyle(id);
+                return RedirectToAction(nameof(Index));
+
             }
-            catch
+            catch (Exception ex)
             {
+                ViewData["bericht"] = ex.Message;
                 return View();
             }
         }

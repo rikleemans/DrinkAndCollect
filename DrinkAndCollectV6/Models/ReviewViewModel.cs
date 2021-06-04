@@ -9,7 +9,7 @@ namespace DrinkAndCollectV6.Models
     public class ReviewViewModel
     {
         public int ReviewID { get; set; }
-        public int UserID { get; set; }
+        public string UserID { get; set; }
         public int BeerID { get; set; }
         public int Rate { get; set; }
         public string Taste { get; set; }
@@ -20,7 +20,7 @@ namespace DrinkAndCollectV6.Models
         {
         }
 
-        public ReviewViewModel(int reviewID, int userID, int beerID, int rate, string taste, string description, DateTime datum)
+        public ReviewViewModel(int reviewID, string userID, int beerID, int rate, string taste, string description, DateTime datum)
         {
             ReviewID = reviewID;
             UserID = userID;

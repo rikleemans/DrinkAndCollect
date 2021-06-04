@@ -15,10 +15,11 @@ namespace DrinkAndCollectV6.Controllers
         // GET: ReviewController
         public ActionResult Index()
         {
-            IReadUser user = UserFactory.CreateUserLogic();
-            List<ReviewViewModel> reviewview = new List<ReviewViewModel>();
             try
             {
+                IReadUser user = UserFactory.CreateUserLogic();
+                List<ReviewViewModel> reviewview = new List<ReviewViewModel>();
+
                 IReadOnlyCollection<IViewableReview> reviews = user.GetAllReviews();
 
                 foreach (IViewableReview review in reviews)
@@ -28,9 +29,11 @@ namespace DrinkAndCollectV6.Controllers
                 }
 
                 return View(reviewview);
+
             }
-            catch
+            catch (Exception ex)
             {
+                ViewData["bericht"] = ex.Message;
                 return View();
             }
         }
@@ -51,8 +54,9 @@ namespace DrinkAndCollectV6.Controllers
 
                 return View(reviewview);
             }
-            catch
+            catch (Exception ex)
             {
+                ViewData["bericht"] = ex.Message;
                 return View();
             }
         }
@@ -71,7 +75,7 @@ namespace DrinkAndCollectV6.Controllers
             {
                 IReadUserCollection users = UserCollectionFactory.CreateUserCollectionLogic();
 
-                if (users.AddReview(Convert.ToInt32(review["ReviewID"]), Convert.ToInt32(review["UserID"]), Convert.ToInt32(review["BeerID"]), Convert.ToInt32(review["Rate"]), review["Taste"], review["Description"], Convert.ToDateTime(review["Datum"])))
+                if (users.AddReview(Convert.ToInt32(review["ReviewID"]), review["UserID"], Convert.ToInt32(review["BeerID"]), Convert.ToInt32(review["Rate"]), review["Taste"], review["Description"], Convert.ToDateTime(review["Datum"])))
                 {
                     return RedirectToAction(nameof(Index));
                 }
@@ -80,31 +84,29 @@ namespace DrinkAndCollectV6.Controllers
                     return View();
                 }
             }
-            catch
+            catch (Exception ex)
             {
+                ViewData["bericht"] = ex.Message;
                 return View();
             }
         }
 
-        // GET: UserController/Delete/5
-        //public ActionResult DeleteReview(int id)
-        //{
-        //    return View();
-        //}
-
         // POST: UserController/Delete/5
         public ActionResult DeleteReview(int id)
         {
-            IReadUserCollection users = UserCollectionFactory.CreateUserCollectionLogic();
             try
             {
+                IReadUserCollection users = UserCollectionFactory.CreateUserCollectionLogic();
+
                 users.RemoveReview(id);
-                return View();
+                return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception ex)
             {
+                ViewData["bericht"] = ex.Message;
                 return View();
             }
+
         }
         // GET: ReviewController/Edit/5
         public ActionResult Update(int id)
@@ -120,7 +122,7 @@ namespace DrinkAndCollectV6.Controllers
             IReadReview reviews = ReviewFactory.CreateReviewLogic();
             try
             {
-                if (reviews.UpdateReview(Convert.ToInt32(review["ReviewID"]), Convert.ToInt32(review["UserID"]), Convert.ToInt32(review["BeerID"]), Convert.ToInt32(review["Rate"]), review["Taste"], review["Description"], Convert.ToDateTime(review["Datum"])))
+                if (reviews.UpdateReview(Convert.ToInt32(review["ReviewID"]), review["UserID"], Convert.ToInt32(review["BeerID"]), Convert.ToInt32(review["Rate"]), review["Taste"], review["Description"], Convert.ToDateTime(review["Datum"])))
                 {
 
                     return RedirectToAction(nameof(Index));
@@ -131,8 +133,9 @@ namespace DrinkAndCollectV6.Controllers
                     return View();
                 }
             }
-            catch
+            catch (Exception ex)
             {
+                ViewData["bericht"] = ex.Message;
                 return View();
             }
         }

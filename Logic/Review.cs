@@ -10,7 +10,7 @@ namespace Logic
     {
         #region properties
         public int ReviewID { get; }
-        public int UserID { get; }
+        public string UserID { get; }
         public int BeerID { get; }
         public int Rate { get; }
         public string Taste { get; }
@@ -25,7 +25,7 @@ namespace Logic
 
         }
 
-        public Review(int reviewID, int userID, int beerID, int rate, string taste, string description, DateTime datum)
+        public Review(int reviewID, string userID, int beerID, int rate, string taste, string description, DateTime datum)
         {
             _dal = ReviewFactory.CreateReviewDal();
             ReviewID = reviewID;
@@ -52,7 +52,7 @@ namespace Logic
             return new ReviewDTO(ReviewID, UserID, BeerID, Rate, Taste, Description, Datum);
         }
 
-        public bool UpdateReview(int reviewID, int userID, int beerID, int rate, string taste, string description, DateTime datum)
+        public bool UpdateReview(int reviewID, string userID, int beerID, int rate, string taste, string description, DateTime datum)
         {
             var review = new Review(reviewID, userID, beerID, rate, taste, description, datum);
             _review.Add(review);

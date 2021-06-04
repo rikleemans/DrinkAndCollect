@@ -20,7 +20,7 @@ namespace Logic
             _dal = UserCollectionFactory.CreateUserCollectionDal();
         }
 
-        public bool AddReview(int reviewID, int userID, int beerID, int rate, string taste, string description, DateTime datum)
+        public bool AddReview(int reviewID, string userID, int beerID, int rate, string taste, string description, DateTime datum)
         {
             var review = new Review(reviewID, userID, beerID, rate, taste, description, datum);
                 _review.Add(review);

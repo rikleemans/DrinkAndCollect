@@ -13,24 +13,65 @@ namespace Dal
     {
         public List<BeerDTO> GetAllBeerInfo()
         {
+            try
+            {
             using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DefaultConnection"));
 
             var output = connection.Query<BeerDTO>("dbo.GetAllBeerInfo").ToList();
             return output;
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception("Database cannot connect, try again");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Something went wrong, try again");
+            }
+        }
+        public BeerDTO GetBeerById(int id)
+        {
+            try{
+            using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DefaultConnection"));
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("@id", id);
+            var output = connection.Query<BeerDTO>("dbo.GetAllBeerInfo @id", parameters);
+            return (BeerDTO)output;
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception("Database cannot connect, try again");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Something went wrong, try again");
+            }
         }
 
         public List<BeernameDTO> GetAllBeer(string name)
         {
+            try{
             using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DefaultConnection"));
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add("@name", name);
             var output = connection.Query<BeernameDTO>("dbo.GetAllBeer @name", parameters).ToList();
             return output;
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception("Database cannot connect, try again");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Something went wrong, try again");
+            }
 
         }
 
         public bool AddBeer(BeerDTO beerDto)
         {
+            try
+            {
             using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DefaultConnection"));
             var result = connection.Execute("dbo.AddBeer  @id, @catID, @styleID, @name, @description", beerDto);
             if (result > 0)
@@ -42,10 +83,21 @@ namespace Dal
                 return false;
 
             }
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception("Database cannot connect, try again");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Something went wrong, try again");
+            }
         }
 
         public bool RemoveBeer(int id)
         {
+            try
+            {
             using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DefaultConnection"));
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add("@id", id);
@@ -57,6 +109,15 @@ namespace Dal
             else
             {
                 return false;
+            }
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception("Database cannot connect, try again");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Something went wrong, try again");
             }
         }
     }

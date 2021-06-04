@@ -12,6 +12,7 @@ namespace Logic.Interface
         public int CatID { get; }
         public string Name { get; }
         public string Description { get; }
+
         public BeerDTO ConvertToDto()
         {
             return new BeerDTO(ID, StyleID, CatID, Name, Description);

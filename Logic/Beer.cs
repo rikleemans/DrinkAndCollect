@@ -56,7 +56,6 @@ namespace Logic
             var beer = new Beer(id, styleid, catid, name, description);
             _beer.Add(beer);
             return _dal.UpdateBeer(beer.ConvertToDto());
-            //_dal.UpdateBeer(beer.ConvertToDto());
         }
 
         public BeerDTO ConvertToDto()

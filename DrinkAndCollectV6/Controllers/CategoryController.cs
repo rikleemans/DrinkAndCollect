@@ -15,9 +15,11 @@ namespace DrinkAndCollectV6.Controllers
         // GET: BeerController
         public ActionResult Index()
         {
-            IReadBeerCollection beerc = BeerCollectionFactory.CreateBeerCollectionLogic();
-            List<CategoryViewModel> catViewModels = new List<CategoryViewModel>();
-            IReadOnlyCollection<IViewableCategory> cats = beerc.GetAllCategory();
+            try
+            {
+                IReadCategory beerc = CategoryFactory.CreateCategoryLogic();
+                List<CategoryViewModel> catViewModels = new List<CategoryViewModel>();
+                IReadOnlyCollection<IViewableCategory> cats = beerc.GetAllCategory();
                 foreach (IViewableCategory cat in cats)
                 {
                     catViewModels.Add(
@@ -26,6 +28,13 @@ namespace DrinkAndCollectV6.Controllers
 
                 return View(catViewModels);
             }
+            catch (Exception ex)
+            {
+                ViewData["bericht"] = ex.Message;
+                return View();
+            }
+        }
+
         // GET: BeerController/Create
         public ActionResult AddCategory()
         {
@@ -39,7 +48,7 @@ namespace DrinkAndCollectV6.Controllers
         {
             try
             {
-                IReadBeerCollection cat = BeerCollectionFactory.CreateBeerCollectionLogic();
+                IReadCategory cat = CategoryFactory.CreateCategoryLogic();
 
                 if (cat.AddCategory(Convert.ToInt32(category["CatID"]), category["Name"]))
                 {
@@ -50,8 +59,9 @@ namespace DrinkAndCollectV6.Controllers
                     return View();
                 }
             }
-            catch
+            catch (Exception ex)
             {
+                ViewData["bericht"] = ex.Message;
                 return View();
             }
 
@@ -59,14 +69,15 @@ namespace DrinkAndCollectV6.Controllers
 
         public ActionResult DeleteCategory(int id)
         {
-            IReadBeerCollection cat = BeerCollectionFactory.CreateBeerCollectionLogic();
+            IReadCategory cat = CategoryFactory.CreateCategoryLogic();
             try
             {
                 cat.RemoveCategory(id);
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception ex)
             {
+                ViewData["bericht"] = ex.Message;
                 return View();
             }
 
