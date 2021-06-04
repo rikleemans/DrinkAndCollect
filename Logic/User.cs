@@ -24,7 +24,7 @@ namespace Logic
         private readonly List<User> _user = new List<User>();
         private readonly List<Review> _review = new List<Review>();
         private readonly List<FriendDTO> _friend = new List<FriendDTO>();
-        private readonly List<FriendCollectionDTO> _friendc = new List<FriendCollectionDTO>();
+        private readonly List<FriendCollectionDTO> _friendcollection = new List<FriendCollectionDTO>();
         private readonly List<Friend> _friends = new List<Friend>();
 
         public User(string username, string password, string firstname, string lastname, int admin, int friend)
@@ -88,8 +88,8 @@ namespace Logic
         {
             _user.Clear();
             _dal.GetFriendCollection(id, friendid).ForEach(
-                dto => _friendc.Add(dto));
-            return (IReadOnlyCollection<IViewableFriendCollection>)_friendc.AsReadOnly();
+                dto => _friendcollection.Add(dto));
+            return (IReadOnlyCollection<IViewableFriendCollection>)_friendcollection.AsReadOnly();
         }
 
         public bool AddFriend(string userID, string friendID, string username)

@@ -16,11 +16,11 @@ namespace DrinkAndCollectV6.Controllers
         // GET: BeerController
         public ActionResult Index()
         {
-            IReadBeerCollection beerc = BeerCollectionFactory.CreateBeerCollectionLogic();
+            IReadBeerCollection beercollection = BeerCollectionFactory.CreateBeerCollectionLogic();
             List<BeerViewModel> beerViewModels = new List<BeerViewModel>();
             try
             {
-                IReadOnlyCollection<IViewableBeer> beers = beerc.GetAllBeerInfo();
+                IReadOnlyCollection<IViewableBeer> beers = beercollection.GetAllBeerInfo();
                 foreach (IViewableBeer beer in beers)
                 {
                     beerViewModels.Add(
@@ -31,7 +31,7 @@ namespace DrinkAndCollectV6.Controllers
             }
             catch(Exception ex)
             {
-                ViewData["bericht"] = ex.Message;
+                ViewData["message"] = ex.Message;
                 return View();
             }
 
@@ -43,8 +43,8 @@ namespace DrinkAndCollectV6.Controllers
         {
             try
             {
-                IReadBeerCollection beerc = BeerCollectionFactory.CreateBeerCollectionLogic();
-                var beer = beerc.GetBeerById(id);
+                IReadBeerCollection beercollection = BeerCollectionFactory.CreateBeerCollectionLogic();
+                var beer = beercollection.GetBeerById(id);
 
                 BeerViewModel beerViewModel = new BeerViewModel(beer.ID, beer.StyleID, beer.CatID, beer.Name, beer.Description);
 
@@ -52,7 +52,7 @@ namespace DrinkAndCollectV6.Controllers
             }
             catch (Exception ex)
             {
-                ViewData["bericht"] = ex.Message;
+                ViewData["message"] = ex.Message;
                 return View();
             }
         }
@@ -77,7 +77,7 @@ namespace DrinkAndCollectV6.Controllers
             }
             catch (Exception ex)
             {
-                ViewData["bericht"] = ex.Message;
+                ViewData["message"] = ex.Message;
                 return View();
             }
         }
@@ -85,12 +85,12 @@ namespace DrinkAndCollectV6.Controllers
         // GET: BeerController/Details/5
         public ActionResult Details(string name)
         {
-            IReadBeerCollection beerc = BeerCollectionFactory.CreateBeerCollectionLogic();
+            IReadBeerCollection beercollection = BeerCollectionFactory.CreateBeerCollectionLogic();
             List<BeerViewModel> viewbeer = new List<BeerViewModel>();
 
             try
             {
-                IReadOnlyCollection<BeernameDTO> beers = beerc.GetAllBeer(name);
+                IReadOnlyCollection<BeernameDTO> beers = beercollection.GetAllBeer(name);
                 foreach (IViewableBeer beer in beers)
                 {
                     viewbeer.Add(new BeerViewModel(beer.ID, beer.StyleID, beer.CatID, beer.Name, beer.Description));
@@ -100,7 +100,7 @@ namespace DrinkAndCollectV6.Controllers
             }
             catch (Exception ex)
             {
-                ViewData["bericht"] = ex.Message;
+                ViewData["message"] = ex.Message;
                 return View();
             }
         }
@@ -131,7 +131,7 @@ namespace DrinkAndCollectV6.Controllers
             }
             catch (Exception ex)
             {
-                ViewData["bericht"] = ex.Message;
+                ViewData["message"] = ex.Message;
                 return View();
             }
         }
@@ -145,7 +145,7 @@ namespace DrinkAndCollectV6.Controllers
             }
             catch (Exception ex)
             {
-                ViewData["bericht"] = ex.Message;
+                ViewData["message"] = ex.Message;
                 return View();
             }
 

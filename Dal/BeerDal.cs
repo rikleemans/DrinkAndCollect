@@ -15,8 +15,8 @@ namespace Dal
         {
             try
             {
-            using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DefaultConnection"));
-           var result =  connection.Execute("dbo.UpdateBeer @id, @styleID, @catID, @name, @description", beer);
+                 using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DefaultConnection"));
+                 var result =  connection.Execute("dbo.UpdateBeer @id, @styleID, @catID, @name, @description", beer);
 
             if (result > 0)
             {

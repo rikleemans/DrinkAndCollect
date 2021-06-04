@@ -44,13 +44,11 @@ namespace Logic
             var styles = new Style(styleID, name);
             _style.Add(styles);
             return _dalstyle.AddStyle(styles.ConvertToDto());
-            //return _dalstyle.AddStyle(name);
         }
 
         public bool RemoveStyle(int id)
         {
             return _dalstyle.RemoveStyle(id);
-            //return _dalstyle.RemoveStyle(id);
         }
         public StyleDTO ConvertToDto()
         {

@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31129.286
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DrinkAndCollectV4", "DrinkAndCollectV4\DrinkAndCollectV4.csproj", "{EA794482-1040-4D2A-A471-4BEE933873C7}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dal", "Dal\Dal.csproj", "{724F05B0-1D48-4A61-ADC9-662A68404F9E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dal.Factory", "Dal.Factory\Dal.Factory.csproj", "{3EBBE98E-C89E-4047-85A2-FBE5C930F1A0}"
@@ -19,9 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logic.Interface", "Logic.In
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logic.Factory", "Logic.Factory\Logic.Factory.csproj", "{95DA3CF5-65C7-4F2A-BEFE-CB6001513B92}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DrinkAndCollectServer", "DrinkAndCollectServer\DrinkAndCollectServer.csproj", "{1747C2B5-1146-44AA-9BCB-5EAAF1BDDDC4}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DrinkAndCollectV6", "DrinkAndCollectV6\DrinkAndCollectV6.csproj", "{4B21AFA8-B89D-40D2-9020-D2A7F2147844}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DrinkAndCollectV6", "DrinkAndCollectV6\DrinkAndCollectV6.csproj", "{4B21AFA8-B89D-40D2-9020-D2A7F2147844}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +25,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{EA794482-1040-4D2A-A471-4BEE933873C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EA794482-1040-4D2A-A471-4BEE933873C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EA794482-1040-4D2A-A471-4BEE933873C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EA794482-1040-4D2A-A471-4BEE933873C7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{724F05B0-1D48-4A61-ADC9-662A68404F9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{724F05B0-1D48-4A61-ADC9-662A68404F9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{724F05B0-1D48-4A61-ADC9-662A68404F9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -61,10 +53,6 @@ Global
 		{95DA3CF5-65C7-4F2A-BEFE-CB6001513B92}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{95DA3CF5-65C7-4F2A-BEFE-CB6001513B92}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{95DA3CF5-65C7-4F2A-BEFE-CB6001513B92}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1747C2B5-1146-44AA-9BCB-5EAAF1BDDDC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1747C2B5-1146-44AA-9BCB-5EAAF1BDDDC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1747C2B5-1146-44AA-9BCB-5EAAF1BDDDC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1747C2B5-1146-44AA-9BCB-5EAAF1BDDDC4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4B21AFA8-B89D-40D2-9020-D2A7F2147844}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4B21AFA8-B89D-40D2-9020-D2A7F2147844}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4B21AFA8-B89D-40D2-9020-D2A7F2147844}.Release|Any CPU.ActiveCfg = Release|Any CPU

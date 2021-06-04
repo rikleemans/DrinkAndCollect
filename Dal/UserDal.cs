@@ -16,10 +16,9 @@ namespace Dal
         {
             try
             {
-            using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DefaultConnection"));
-
-            var output = connection.Query<ReviewDTO>("dbo.GetAllReviews").ToList();
-            return output;
+                using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DefaultConnection"));
+                var output = connection.Query<ReviewDTO>("dbo.GetAllReviews").ToList();
+                return output;
             }
             catch (SqlException ex)
             {
@@ -34,11 +33,11 @@ namespace Dal
         {
             try
             {
-            using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DefaultConnection"));
-            DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("@id", id);
-            var output = connection.Query<ReviewDTO>("dbo.GetAllReviewsByUser", parameters).ToList();
-            return output;
+                 using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DefaultConnection"));
+                 DynamicParameters parameters = new DynamicParameters();
+                 parameters.Add("@id", id);
+                 var output = connection.Query<ReviewDTO>("dbo.GetAllReviewsByUser", parameters).ToList();
+                 return output;
             }
             catch (SqlException ex)
             {
@@ -53,11 +52,11 @@ namespace Dal
         {
             try
             {
-            using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DefaultConnection"));
-            DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("@id", id);
-            var output = connection.Query<ReviewDTO>("dbo.GetCollection", parameters).ToList();
-            return output;
+                using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DefaultConnection"));
+                DynamicParameters parameters = new DynamicParameters();
+                parameters.Add("@id", id);
+                var output = connection.Query<ReviewDTO>("dbo.GetCollection", parameters).ToList();
+                return output;
             }
             catch (SqlException ex)
             {
@@ -72,11 +71,11 @@ namespace Dal
         public List<FriendDTO> GetAllFriends(string id)
         {
             try{
-            using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DefaultConnection"));
-            DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("@username", id);
-            var output = connection.Query<FriendDTO>("dbo.GetAllFriends @username", parameters).ToList();
-            return output;
+                using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DefaultConnection"));
+                DynamicParameters parameters = new DynamicParameters();
+                parameters.Add("@username", id);
+                var output = connection.Query<FriendDTO>("dbo.GetAllFriends @username", parameters).ToList();
+                return output;
             }
             catch (SqlException ex)
             {

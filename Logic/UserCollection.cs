@@ -10,9 +10,7 @@ namespace Logic
 {
     public class UserCollection : IReadUserCollection
     {
-        private readonly List<User> _usercollection = new List<User>();
         private List<Review> _review = new List<Review>();
-        private List<FriendDTO> _friend = new List<FriendDTO>();
         private IUserCollection _dal;
 
         public UserCollection()
@@ -23,22 +21,17 @@ namespace Logic
         public bool AddReview(int reviewID, string userID, int beerID, int rate, string taste, string description, DateTime datum)
         {
             var review = new Review(reviewID, userID, beerID, rate, taste, description, datum);
-                _review.Add(review);
-                return _dal.AddReview(review.ConvertToDto());
-                //return _dal.AddReview(review.ConvertToDto());
+            _review.Add(review);
+            return _dal.AddReview(review.ConvertToDto());
         }
 
         public bool RemoveReview(int id)
         {
-
             return _dal.RemoveReview(id);
-            //return _dal.RemoveReview(id);
         }
         public void RateReview(int userID, int friendID, string username, string firstname, string lastname)
         {
 
         }
-
-
     }
 }

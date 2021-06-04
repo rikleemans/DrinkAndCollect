@@ -16,9 +16,7 @@ namespace Logic
         private readonly IBeerCollection _dal;
         private readonly List<Beer> _beerCollection = new List<Beer>();
         private List<BeernameDTO> _beername = new List<BeernameDTO>();
-        private readonly List<BeerDTO> _beer = new List<BeerDTO>();
         private readonly IBeer _dalbeer;
-
 
         public BeerCollection()
         {
@@ -51,13 +49,11 @@ namespace Logic
             var beer = new Beer(id, styleid, catid, name, description);
             _beerCollection.Add(beer);
             return _dal.AddBeer(beer.ConvertToDto());
-            //return _dal.AddBeer(beer.ConvertToDto());
         }
 
         public bool RemoveBeer(int id)
         {
             return _dal.RemoveBeer(id);
-            //return _dal.RemoveBeer(id);
         }
     }
 }

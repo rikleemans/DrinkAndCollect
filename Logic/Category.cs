@@ -43,13 +43,11 @@ namespace Logic
             var category = new Category(catID, name);
             _categorycollection.Add(category);
             return _dalcat.AddCategory(category.ConvertToDto());
-            //return _dalcat.AddCategory(name);
         }
 
         public bool RemoveCategory(int id)
         {
             return _dalcat.RemoveCategory(id);
-            //return _dalcat.RemoveCategory(id);
         }
         public CategoryDTO ConvertToDto()
         {

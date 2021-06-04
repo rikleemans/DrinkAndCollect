@@ -16,11 +16,11 @@ namespace DrinkAndCollectV6.Controllers
         // GET: BeerController
         public ActionResult Index()
         {
-            IReadStyle beerc = StyleFactory.CreateStyleLogic();
+            IReadStyle beercollection = StyleFactory.CreateStyleLogic();
             List<StyleViewModel> styleViewModels = new List<StyleViewModel>();
             try
             {
-                IReadOnlyCollection<IViewableStyle> styles = beerc.GetAllStyle();
+                IReadOnlyCollection<IViewableStyle> styles = beercollection.GetAllStyle();
                 foreach (IViewableStyle style in styles)
                 {
                     styleViewModels.Add(
@@ -31,7 +31,7 @@ namespace DrinkAndCollectV6.Controllers
             }
             catch (Exception ex)
             {
-                ViewData["bericht"] = ex.Message;
+                ViewData["message"] = ex.Message;
                 return View();
             }
         }
@@ -63,7 +63,7 @@ namespace DrinkAndCollectV6.Controllers
             }
             catch (Exception ex)
             {
-                ViewData["bericht"] = ex.Message;
+                ViewData["message"] = ex.Message;
                 return View();
             }
         }
@@ -80,7 +80,7 @@ namespace DrinkAndCollectV6.Controllers
             }
             catch (Exception ex)
             {
-                ViewData["bericht"] = ex.Message;
+                ViewData["message"] = ex.Message;
                 return View();
             }
         }

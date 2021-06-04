@@ -17,8 +17,8 @@ namespace Dal
         {
             try
             {
-            using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DefaultConnection"));
-            var result = connection.Execute("dbo.AddReview @reviewID, @userID, @beerID, @rate, @taste, @description, @datum", review);
+                using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DefaultConnection"));
+                var result = connection.Execute("dbo.AddReview @reviewID, @userID, @beerID, @rate, @taste, @description, @datum", review);
             if (result > 0)
             {
                 return true;
@@ -43,10 +43,10 @@ namespace Dal
         {
             try
             {
-            using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DefaultConnection"));
-            DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("@reviewID", id);
-            var result = connection.Execute("dbo.DeleteReview @reviewID", parameters);
+                 using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DefaultConnection"));
+                 DynamicParameters parameters = new DynamicParameters();
+                 parameters.Add("@reviewID", id);
+                 var result = connection.Execute("dbo.DeleteReview @reviewID", parameters);
             if (result > 0)
             {
                 return true;

@@ -17,6 +17,7 @@ namespace Logic
         public string Description { get; }
         public DateTime Datum { get; }
         #endregion
+
         private readonly IReview _dal;
         private readonly List<Review> _review = new List<Review>();
 
@@ -57,7 +58,6 @@ namespace Logic
             var review = new Review(reviewID, userID, beerID, rate, taste, description, datum);
             _review.Add(review);
            return _dal.UpdateReview(review.ConvertToDto());
-            //_dal.UpdateReview(review.ConvertToDto());
         }
     }
 }

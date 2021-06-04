@@ -17,9 +17,9 @@ namespace DrinkAndCollectV6.Controllers
         {
             try
             {
-                IReadCategory beerc = CategoryFactory.CreateCategoryLogic();
+                IReadCategory beercollection = CategoryFactory.CreateCategoryLogic();
                 List<CategoryViewModel> catViewModels = new List<CategoryViewModel>();
-                IReadOnlyCollection<IViewableCategory> cats = beerc.GetAllCategory();
+                IReadOnlyCollection<IViewableCategory> cats = beercollection.GetAllCategory();
                 foreach (IViewableCategory cat in cats)
                 {
                     catViewModels.Add(
@@ -30,7 +30,7 @@ namespace DrinkAndCollectV6.Controllers
             }
             catch (Exception ex)
             {
-                ViewData["bericht"] = ex.Message;
+                ViewData["message"] = ex.Message;
                 return View();
             }
         }
@@ -61,7 +61,7 @@ namespace DrinkAndCollectV6.Controllers
             }
             catch (Exception ex)
             {
-                ViewData["bericht"] = ex.Message;
+                ViewData["message"] = ex.Message;
                 return View();
             }
 
@@ -77,7 +77,7 @@ namespace DrinkAndCollectV6.Controllers
             }
             catch (Exception ex)
             {
-                ViewData["bericht"] = ex.Message;
+                ViewData["message"] = ex.Message;
                 return View();
             }
 

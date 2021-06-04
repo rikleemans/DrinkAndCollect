@@ -34,4 +34,3 @@ namespace Test
         }
     }
 }
-//ReviewID, UserID, BeerID, Rate, Taste, Description, Datum

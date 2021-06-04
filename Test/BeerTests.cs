@@ -31,9 +31,9 @@ namespace Test
         //int number = 1;
         //string name = "kaas";
         //var expected = (number, number, number, name, name);
-        //var s = new Beer(1, 1, 1, "kaas", "kaas");
+        //var output = new Beer(1, 1, 1, "kaas", "kaas");
         //_beers.UpdateBeer(s);
-        //Assert.AreEqual(expected, s);
+        //Assert.AreEqual(expected, output);
     }
     [TestMethod]
     public void AddBeerInfo_User_AddBeer()
@@ -41,9 +41,9 @@ namespace Test
         //int number = 1;
         //string name = "kaas";
         //var expected = (number, number, number, name, name);
-        //Beer s = new Beer(1, 1, 1, "kaas", "kaas");
+        //Beer output = new Beer(1, 1, 1, "kaas", "kaas");
         //_beercollection.AddBeer();
-        //Assert.AreEqual(expected, s);
+        //Assert.AreEqual(expected, output);
     }
 
     [TestMethod]

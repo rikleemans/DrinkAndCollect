@@ -33,7 +33,7 @@ namespace DrinkAndCollectV6.Controllers
             }
             catch (Exception ex)
             {
-                ViewData["bericht"] = ex.Message;
+                ViewData["message"] = ex.Message;
                 return View();
             }
         }
@@ -56,7 +56,7 @@ namespace DrinkAndCollectV6.Controllers
             }
             catch (Exception ex)
             {
-                ViewData["bericht"] = ex.Message;
+                ViewData["message"] = ex.Message;
                 return View();
             }
         }
@@ -86,7 +86,7 @@ namespace DrinkAndCollectV6.Controllers
             }
             catch (Exception ex)
             {
-                ViewData["bericht"] = ex.Message;
+                ViewData["message"] = ex.Message;
                 return View();
             }
         }
@@ -103,7 +103,7 @@ namespace DrinkAndCollectV6.Controllers
             }
             catch (Exception ex)
             {
-                ViewData["bericht"] = ex.Message;
+                ViewData["message"] = ex.Message;
                 return View();
             }
 
@@ -135,7 +135,7 @@ namespace DrinkAndCollectV6.Controllers
             }
             catch (Exception ex)
             {
-                ViewData["bericht"] = ex.Message;
+                ViewData["message"] = ex.Message;
                 return View();
             }
         }

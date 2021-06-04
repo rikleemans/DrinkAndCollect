@@ -14,10 +14,9 @@ namespace Dal
         {
             try
             {
-            using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DefaultConnection"));
-
-            var output = connection.Query<CategoryDTO>("dbo.GetAllCategory").ToList();
-            return output;
+                using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DefaultConnection"));
+                var output = connection.Query<CategoryDTO>("dbo.GetAllCategory").ToList(); 
+                return output;
             }
             catch (SqlException ex)
             {
@@ -33,9 +32,8 @@ namespace Dal
         {
             try
             {
-            using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DefaultConnection"));
-
-            var result = connection.Execute("dbo.AddCategory @catID, @name", category);
+                using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DefaultConnection"));
+                var result = connection.Execute("dbo.AddCategory @catID, @name", category);
             if (result > 0)
             {
                 return true;
@@ -59,10 +57,10 @@ namespace Dal
         {
             try
             {
-            using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DefaultConnection"));
-            DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("@catID", id);
-            var result = connection.Execute("dbo.DeleteCat @catID", parameters);
+                using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DefaultConnection"));
+                DynamicParameters parameters = new DynamicParameters();
+                parameters.Add("@catID", id);
+                var result = connection.Execute("dbo.DeleteCat @catID", parameters);
             if (result > 0)
             {
                 return true;

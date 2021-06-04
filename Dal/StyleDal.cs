@@ -14,10 +14,9 @@ namespace Dal
         public List<StyleDTO> GetAllStyle()
         {
             try
-            {
+            { 
                 using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DefaultConnection"));
-
-             var output = connection.Query<StyleDTO>("dbo.GetAllStyle").ToList();
+                var output = connection.Query<StyleDTO>("dbo.GetAllStyle").ToList();
              return output;
             }
             catch (SqlException ex)

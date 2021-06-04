@@ -15,10 +15,10 @@ namespace Dal
         {
             try
             {
-            using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DefaultConnection"));
+                 using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DefaultConnection"));
 
-            var output = connection.Query<BeerDTO>("dbo.GetAllBeerInfo").ToList();
-            return output;
+                 var output = connection.Query<BeerDTO>("dbo.GetAllBeerInfo").ToList();
+                 return output;
             }
             catch (SqlException ex)
             {
@@ -32,10 +32,10 @@ namespace Dal
         public BeerDTO GetBeerById(int id)
         {
             try{
-            using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DefaultConnection"));
-            DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("@id", id);
-            var output = connection.Query<BeerDTO>("dbo.GetAllBeerInfo @id", parameters);
+                  using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DefaultConnection"));
+                  DynamicParameters parameters = new DynamicParameters();
+                  parameters.Add("@id", id);
+                  var output = connection.Query<BeerDTO>("dbo.GetAllBeerInfo @id", parameters);
             return (BeerDTO)output;
             }
             catch (SqlException ex)
@@ -51,10 +51,10 @@ namespace Dal
         public List<BeernameDTO> GetAllBeer(string name)
         {
             try{
-            using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DefaultConnection"));
-            DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("@name", name);
-            var output = connection.Query<BeernameDTO>("dbo.GetAllBeer @name", parameters).ToList();
+                 using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DefaultConnection"));
+                 DynamicParameters parameters = new DynamicParameters();
+                 parameters.Add("@name", name);
+                 var output = connection.Query<BeernameDTO>("dbo.GetAllBeer @name", parameters).ToList();
             return output;
             }
             catch (SqlException ex)
@@ -72,8 +72,8 @@ namespace Dal
         {
             try
             {
-            using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DefaultConnection"));
-            var result = connection.Execute("dbo.AddBeer  @id, @catID, @styleID, @name, @description", beerDto);
+                using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DefaultConnection"));
+                var result = connection.Execute("dbo.AddBeer  @id, @catID, @styleID, @name, @description", beerDto);
             if (result > 0)
             {
                 return true;
@@ -98,10 +98,10 @@ namespace Dal
         {
             try
             {
-            using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DefaultConnection"));
-            DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("@id", id);
-            var result = connection.Execute("dbo.RemoveBeer @id", parameters);
+                 using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DefaultConnection"));
+                 DynamicParameters parameters = new DynamicParameters();
+                 parameters.Add("@id", id);
+                 var result = connection.Execute("dbo.RemoveBeer @id", parameters);
             if (result > 0)
             {
                 return true;
