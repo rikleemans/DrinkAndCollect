@@ -57,52 +57,101 @@ namespace Logic
 
         public IReadOnlyCollection<IViewableReview> GetAllReviews()
         {
-            _review.Clear();
-            _dal.GetAllReviews().ForEach(
+            try
+            {
+                _review.Clear();
+                _dal.GetAllReviews().ForEach(
                 dto => _review.Add(new Review(dto)));
-            return _review.AsReadOnly();
+                return _review.AsReadOnly();
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Something went wrong, try again");
+            }
         }
         public IReadOnlyCollection<IViewableReview> GetAllReviewsByUser(int id)
         {
-            _review.Clear();
-            _dal.GetAllReviewsByUser(id).ForEach(
+            try
+            {
+                _review.Clear();
+                _dal.GetAllReviewsByUser(id).ForEach(
                 dto => _review.Add(new Review(dto)));
-            return _review.AsReadOnly();
+                return _review.AsReadOnly();
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Something went wrong, try again");
+            }
         }
         public IReadOnlyCollection<IViewableReview> GetCollection(int id)
         {
-            _review.Clear();
-            _dal.GetCollection(id).ForEach(
-                dto => _review.Add(new Review(dto)));
-            return _review.AsReadOnly();
+            try
+            {
+                 _review.Clear();
+                 _dal.GetCollection(id).ForEach(
+                 dto => _review.Add(new Review(dto)));
+                return _review.AsReadOnly();
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Something went wrong, try again");
+            }
         }
         public IReadOnlyCollection<IViewableFriend> GetAllFriends(string id)
         {
-            _friends.Clear();
-            _dal.GetAllFriends(id).ForEach(
+            try
+            {
+                _friends.Clear();
+                 _dal.GetAllFriends(id).ForEach(
                 dto => _friends.Add(new Friend(dto)));
-            return _friends.AsReadOnly();
+                return _friends.AsReadOnly();
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Something went wrong, try again");
+            }
         }
 
         public IReadOnlyCollection<IViewableFriendCollection> GetFriendCollection(int id, int friendid)
         {
-            _user.Clear();
-            _dal.GetFriendCollection(id, friendid).ForEach(
+            try
+            {
+                _user.Clear();
+                _dal.GetFriendCollection(id, friendid).ForEach(
                 dto => _friendcollection.Add(dto));
-            return (IReadOnlyCollection<IViewableFriendCollection>)_friendcollection.AsReadOnly();
+                return (IReadOnlyCollection<IViewableFriendCollection>)_friendcollection.AsReadOnly();
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Something went wrong, try again");
+            }
         }
 
         public bool AddFriend(string userID, string friendID, string username)
         {
-            var friend = new FriendDTO(userID, friendID, username);
-            _friend.Add(friend);
-            return _dal.AddFriend(friend.ConvertToDto());
+            try
+            {
+                var friend = new FriendDTO(userID, friendID, username);
+                _friend.Add(friend);
+                return _dal.AddFriend(friend.ConvertToDto());
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Something went wrong, try again");
+            }
             //return _dal.AddFriend(friend.ConvertToDto());
         }
 
         public bool RemoveFriend(string userID, string friendID)
         {
-            return _dal.RemoveFriend(userID, friendID);
+            try
+            {
+                 return _dal.RemoveFriend(userID, friendID);
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Something went wrong, try again");
+            }
             //return _dal.RemoveFriend(id);
         }
     }

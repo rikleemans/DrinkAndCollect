@@ -28,10 +28,11 @@ namespace DrinkAndCollectV6.Controllers
 
                 return View(catViewModels);
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                ViewData["message"] = ex.Message;
-                return View();
+                List<CategoryViewModel> newmodel = new List<CategoryViewModel>();
+                ViewData["message"] = e.Message;
+                return View(newmodel);
             }
         }
 
@@ -59,10 +60,11 @@ namespace DrinkAndCollectV6.Controllers
                     return View();
                 }
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                ViewData["message"] = ex.Message;
-                return View();
+                List<CategoryViewModel> newmodel = new List<CategoryViewModel>();
+                ViewData["message"] = e.Message;
+                return View(newmodel);
             }
 
         }
@@ -75,10 +77,11 @@ namespace DrinkAndCollectV6.Controllers
                 cat.RemoveCategory(id);
                 return RedirectToAction(nameof(Index));
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                ViewData["message"] = ex.Message;
-                return View();
+                List<CategoryViewModel> newmodel = new List<CategoryViewModel>();
+                ViewData["message"] = e.Message;
+                return View(newmodel);
             }
 
         }

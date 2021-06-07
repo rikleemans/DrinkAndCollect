@@ -30,10 +30,11 @@ namespace DrinkAndCollectV6.Controllers
 
                 return View(viewcollection);
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                ViewData["message"] = ex.Message;
-                return View();
+                List<StyleViewModel> newmodel = new List<StyleViewModel>();
+                ViewData["message"] = e.Message;
+                return View(newmodel);
             }
         }
 
@@ -52,10 +53,11 @@ namespace DrinkAndCollectV6.Controllers
 
                 return View(viewfriends);
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                ViewData["message"] = ex.Message;
-                return View();
+                List<FriendViewModel> newmodel = new List<FriendViewModel>();
+                ViewData["message"] = e.Message;
+                return View(newmodel);
             }
         }
 
@@ -75,10 +77,11 @@ namespace DrinkAndCollectV6.Controllers
 
                 return View(viewcollection);
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                ViewData["message"] = ex.Message;
-                return View();
+                List<FriendCollectionViewModel> newmodel = new List<FriendCollectionViewModel>();
+                ViewData["message"] = e.Message;
+                return View(newmodel);
             }
         }
 
@@ -105,10 +108,11 @@ namespace DrinkAndCollectV6.Controllers
                     return View();
                 }
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                ViewData["message"] = ex.Message;
-                return View();
+                List<FriendViewModel> newmodel = new List<FriendViewModel>();
+                ViewData["message"] = e.Message;
+                return View(newmodel);
             }
         }
 
@@ -120,10 +124,11 @@ namespace DrinkAndCollectV6.Controllers
                 users.RemoveFriend(userID, friendID);
                 return RedirectToAction(nameof(Index));
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                ViewData["message"] = ex.Message;
-                return View();
+                List<FriendViewModel> newmodel = new List<FriendViewModel>();
+                ViewData["message"] = e.Message;
+                return View(newmodel);
             }
         }
     }

@@ -20,14 +20,28 @@ namespace Logic
 
         public bool AddReview(int reviewID, string userID, int beerID, int rate, string taste, string description, DateTime datum)
         {
-            var review = new Review(reviewID, userID, beerID, rate, taste, description, datum);
-            _review.Add(review);
-            return _dal.AddReview(review.ConvertToDto());
+            try
+            {
+                var review = new Review(reviewID, userID, beerID, rate, taste, description, datum);
+                _review.Add(review);
+                return _dal.AddReview(review.ConvertToDto());
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Something went wrong, try again");
+            }
         }
 
         public bool RemoveReview(int id)
         {
-            return _dal.RemoveReview(id);
+            try
+            {
+                return _dal.RemoveReview(id);
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Something went wrong, try again");
+            }
         }
         public void RateReview(int userID, int friendID, string username, string firstname, string lastname)
         {

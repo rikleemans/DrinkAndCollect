@@ -17,13 +17,13 @@ namespace Dal
             { 
                 using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DefaultConnection"));
                 var output = connection.Query<StyleDTO>("dbo.GetAllStyle").ToList();
-             return output;
+                return output;
             }
-            catch (SqlException ex)
+            catch (SqlException e)
             {
                 throw new Exception("Database cannot connect, try again");
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
                 throw new Exception("Something went wrong, try again");
             }
@@ -42,14 +42,13 @@ namespace Dal
             else
             {
                 return false;
-
             }
             }
-            catch (SqlException ex)
+            catch (SqlException e)
             {
                 throw new Exception("Database cannot connect, try again");
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
                 throw new Exception("Something went wrong, try again");
             }
@@ -71,11 +70,11 @@ namespace Dal
                 return false;
             }
             }
-            catch (SqlException ex)
+            catch (SqlException e)
             {
                 throw new Exception("Database cannot connect, try again");
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
                 throw new Exception("Something went wrong, try again");
             }

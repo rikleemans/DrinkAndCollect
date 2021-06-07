@@ -29,10 +29,11 @@ namespace DrinkAndCollectV6.Controllers
 
                 return View(styleViewModels);
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                ViewData["message"] = ex.Message;
-                return View();
+                List<StyleViewModel> newmodel = new List<StyleViewModel>();
+                ViewData["message"] = e.Message;
+                return View(newmodel);
             }
         }
 
@@ -61,10 +62,11 @@ namespace DrinkAndCollectV6.Controllers
                     return View();
                 }
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                ViewData["message"] = ex.Message;
-                return View();
+                List<StyleViewModel> newmodel = new List<StyleViewModel>();
+                ViewData["message"] = e.Message;
+                return View(newmodel);
             }
         }
 
@@ -78,10 +80,11 @@ namespace DrinkAndCollectV6.Controllers
                 return RedirectToAction(nameof(Index));
 
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                ViewData["message"] = ex.Message;
-                return View();
+                List<StyleViewModel> newmodel = new List<StyleViewModel>();
+                ViewData["message"] = e.Message;
+                return View(newmodel);
             }
         }
     }

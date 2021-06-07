@@ -20,11 +20,11 @@ namespace Dal
                 var output = connection.Query<ReviewDTO>("dbo.GetAllReviews").ToList();
                 return output;
             }
-            catch (SqlException ex)
+            catch (SqlException e)
             {
                 throw new Exception("Database cannot connect, try again");
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
                 throw new Exception("Something went wrong, try again");
             }
@@ -39,11 +39,11 @@ namespace Dal
                  var output = connection.Query<ReviewDTO>("dbo.GetAllReviewsByUser", parameters).ToList();
                  return output;
             }
-            catch (SqlException ex)
+            catch (SqlException e)
             {
                 throw new Exception("Database cannot connect, try again");
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
                 throw new Exception("Something went wrong, try again");
             }
@@ -58,11 +58,11 @@ namespace Dal
                 var output = connection.Query<ReviewDTO>("dbo.GetCollection", parameters).ToList();
                 return output;
             }
-            catch (SqlException ex)
+            catch (SqlException e)
             {
                 throw new Exception("Database cannot connect, try again");
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
                 throw new Exception("Something went wrong, try again");
             }
@@ -77,11 +77,11 @@ namespace Dal
                 var output = connection.Query<FriendDTO>("dbo.GetAllFriends @username", parameters).ToList();
                 return output;
             }
-            catch (SqlException ex)
+            catch (SqlException e)
             {
                 throw new Exception("Database cannot connect, try again");
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
                 throw new Exception("Something went wrong, try again");
             }
@@ -92,18 +92,18 @@ namespace Dal
         {
             try
             {
-            using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DefaultConnection"));
-            DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("@id", id);
-            parameters.Add("@friendid", friendid);
-            var output = connection.Query<FriendCollectionDTO>("dbo.GetFriendCollection", parameters).ToList();
-            return output;
+                using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DefaultConnection"));
+                DynamicParameters parameters = new DynamicParameters();
+                parameters.Add("@id", id);
+                parameters.Add("@friendid", friendid);
+                var output = connection.Query<FriendCollectionDTO>("dbo.GetFriendCollection", parameters).ToList();
+                return output;
             }
-            catch (SqlException ex)
+            catch (SqlException e)
             {
                 throw new Exception("Database cannot connect, try again");
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
                 throw new Exception("Something went wrong, try again");
             }
@@ -114,8 +114,8 @@ namespace Dal
         {
             try
             {
-            using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DefaultConnection"));
-            var result = connection.Execute("dbo.AddFriend @userID, @friendID, @username, @firstname, @lastname", friends);
+                using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DefaultConnection"));
+                var result = connection.Execute("dbo.AddFriend @userID, @friendID, @username, @firstname, @lastname", friends);
             if (result > 0)
             {
                 return true;
@@ -123,14 +123,13 @@ namespace Dal
             else
             {
                 return false;
-
             }
             }
-            catch (SqlException ex)
+            catch (SqlException e)
             {
                 throw new Exception("Database cannot connect, try again");
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
                 throw new Exception("Something went wrong, try again");
             }
@@ -140,26 +139,25 @@ namespace Dal
         {
             try
             {
-            using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DefaultConnection"));
-            DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("@userID", userID);
-            parameters.Add("@friendID", friendID);
-            var result = connection.Execute("dbo.RemoveFriend @userID, @friendID, @username, @firstname, @lastname", parameters);
+                using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DefaultConnection"));
+                DynamicParameters parameters = new DynamicParameters();
+                parameters.Add("@userID", userID);
+                parameters.Add("@friendID", friendID);
+                var result = connection.Execute("dbo.RemoveFriend @userID, @friendID, @username, @firstname, @lastname", parameters);
             if (result > 0)
             {
                 return true;
             }
             else
             {
-                return false;
-
+                return false; 
             }
             }
-            catch (SqlException ex)
+            catch (SqlException e)
             {
                 throw new Exception("Database cannot connect, try again");
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
                 throw new Exception("Something went wrong, try again");
             }

@@ -23,12 +23,11 @@ namespace Logic
 
         public Review()
         {
-
+            _dal = ReviewFactory.CreateReviewDal();
         }
 
         public Review(int reviewID, string userID, int beerID, int rate, string taste, string description, DateTime datum)
         {
-            _dal = ReviewFactory.CreateReviewDal();
             ReviewID = reviewID;
             UserID = userID;
             BeerID = beerID;
@@ -55,9 +54,16 @@ namespace Logic
 
         public bool UpdateReview(int reviewID, string userID, int beerID, int rate, string taste, string description, DateTime datum)
         {
-            var review = new Review(reviewID, userID, beerID, rate, taste, description, datum);
-            _review.Add(review);
-           return _dal.UpdateReview(review.ConvertToDto());
+            try
+            {
+                var review = new Review(reviewID, userID, beerID, rate, taste, description, datum);
+                _review.Add(review);
+                return _dal.UpdateReview(review.ConvertToDto());
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Something went wrong, try again");
+            }
         }
     }
 }

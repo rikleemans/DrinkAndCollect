@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Dal.Interface;
+using Microsoft.VisualBasic;
 
 namespace DrinkAndCollectV6.Controllers
 {
@@ -29,13 +30,12 @@ namespace DrinkAndCollectV6.Controllers
 
                 return View(beerViewModels);
             }
-            catch(Exception ex)
+            catch(Exception e)
             {
-                ViewData["message"] = ex.Message;
-                return View();
+                List<BeerViewModel> newmodel = new List<BeerViewModel>();
+                ViewData["message"] = e.Message;
+                return View(newmodel);
             }
-
-
         }
 
         // GET: BeerController/Edit/5
@@ -50,10 +50,11 @@ namespace DrinkAndCollectV6.Controllers
 
                 return View(beerViewModel);
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                ViewData["message"] = ex.Message;
-                return View();
+                List<BeerViewModel> newmodel = new List<BeerViewModel>();
+                ViewData["message"] = e.Message;
+                return View(newmodel);
             }
         }
 
@@ -75,10 +76,11 @@ namespace DrinkAndCollectV6.Controllers
                     return View();
                 }
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                ViewData["message"] = ex.Message;
-                return View();
+                List<BeerViewModel> newmodel = new List<BeerViewModel>();
+                ViewData["message"] = e.Message;
+                return View(newmodel);
             }
         }
 
@@ -98,10 +100,11 @@ namespace DrinkAndCollectV6.Controllers
 
                 return View(viewbeer);
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                ViewData["message"] = ex.Message;
-                return View();
+                List<BeerViewModel> newmodel = new List<BeerViewModel>();
+                ViewData["message"] = e.Message;
+                return View(newmodel);
             }
         }
 
@@ -129,10 +132,11 @@ namespace DrinkAndCollectV6.Controllers
                     return View();
                 }
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                ViewData["message"] = ex.Message;
-                return View();
+                List<BeerViewModel> newmodel = new List<BeerViewModel>();
+                ViewData["message"] = e.Message;
+                return View(newmodel);
             }
         }
         public ActionResult Delete(int id)
@@ -143,10 +147,11 @@ namespace DrinkAndCollectV6.Controllers
                 beer.RemoveBeer(id);
                 return RedirectToAction(nameof(Index));
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                ViewData["message"] = ex.Message;
-                return View();
+                List<BeerViewModel> newmodel = new List<BeerViewModel>();
+                ViewData["message"] = e.Message;
+                return View(newmodel);
             }
 
         }

@@ -31,10 +31,11 @@ namespace DrinkAndCollectV6.Controllers
                 return View(reviewview);
 
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                ViewData["message"] = ex.Message;
-                return View();
+                List<ReviewViewModel> newmodel = new List<ReviewViewModel>();
+                ViewData["message"] = e.Message;
+                return View(newmodel);
             }
         }
 
@@ -54,10 +55,11 @@ namespace DrinkAndCollectV6.Controllers
 
                 return View(reviewview);
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                ViewData["message"] = ex.Message;
-                return View();
+                List<ReviewViewModel> newmodel = new List<ReviewViewModel>();
+                ViewData["message"] = e.Message;
+                return View(newmodel);
             }
         }
 
@@ -84,10 +86,11 @@ namespace DrinkAndCollectV6.Controllers
                     return View();
                 }
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                ViewData["message"] = ex.Message;
-                return View();
+                List<ReviewViewModel> newmodel = new List<ReviewViewModel>();
+                ViewData["message"] = e.Message;
+                return View(newmodel);
             }
         }
 
@@ -101,10 +104,11 @@ namespace DrinkAndCollectV6.Controllers
                 users.RemoveReview(id);
                 return RedirectToAction(nameof(Index));
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                ViewData["message"] = ex.Message;
-                return View();
+                List<ReviewViewModel> newmodel = new List<ReviewViewModel>();
+                ViewData["message"] = e.Message;
+                return View(newmodel);
             }
 
         }
@@ -133,10 +137,11 @@ namespace DrinkAndCollectV6.Controllers
                     return View();
                 }
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                ViewData["message"] = ex.Message;
-                return View();
+                List<ReviewViewModel> newmodel = new List<ReviewViewModel>();
+                ViewData["message"] = e.Message;
+                return View(newmodel);
             }
         }
     }

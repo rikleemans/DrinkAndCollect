@@ -16,39 +16,57 @@ namespace Logic
        private readonly List<Style> _style = new List<Style>();
         public Style(int styleID, string name)
         {
-            _dalstyle = StyleFactory.CreateStyleDal();
             StyleID = styleID;
             Name = name;
         }
-
+        public Style()
+        {
+            _dalstyle = StyleFactory.CreateStyleDal();
+        }
         public Style(StyleDTO dto)
         {
             StyleID = dto.StyleID;
             Name = dto.Name;
 
         }
-
-        public Style()
-        {
-            _dalstyle = StyleFactory.CreateStyleDal();
-        }
         public IReadOnlyCollection<IViewableStyle> GetAllStyle()
         {
-            _style.Clear();
-            _dalstyle.GetAllStyle().ForEach(
+            try
+            {
+                _style.Clear();
+                _dalstyle.GetAllStyle().ForEach(
                 dto => _style.Add(new Style(dto)));
             return _style.AsReadOnly();
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Something went wrong, try again");
+            }
         }
         public bool AddStyle(int styleID, string name)
         {
-            var styles = new Style(styleID, name);
-            _style.Add(styles);
-            return _dalstyle.AddStyle(styles.ConvertToDto());
+            try
+            {
+                var styles = new Style(styleID, name);
+                _style.Add(styles);
+                return _dalstyle.AddStyle(styles.ConvertToDto());
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Something went wrong, try again");
+            }
         }
 
         public bool RemoveStyle(int id)
         {
-            return _dalstyle.RemoveStyle(id);
+            try
+            {
+                return _dalstyle.RemoveStyle(id);
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Something went wrong, try again");
+            }
         }
         public StyleDTO ConvertToDto()
         {

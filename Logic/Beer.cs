@@ -1,10 +1,15 @@
-﻿using Dal.Factory;
+﻿using System;
+using Dal.Factory;
 using Dal.Interface;
 using Dal.Interface.Enums;
 using Org.BouncyCastle.Asn1.X509;
 using System.Collections.Generic;
+using System.Data;
 using System.Dynamic;
+using System.Linq.Expressions;
+using Dal;
 using Logic.Interface;
+using Org.BouncyCastle.Bcpg;
 
 namespace Logic
 {
@@ -25,7 +30,6 @@ namespace Logic
 
         public Beer(int id, int styleid, int catid, string name, string description)
         {
-            _dal = BeerFactory.CreateBeerDal();
             ID = id;
             StyleID = styleid;
             CatID = catid;
@@ -34,7 +38,7 @@ namespace Logic
         }
         public Beer()
         {
-
+            _dal = BeerFactory.CreateBeerDal();
         }
         public Beer(int id)
         {
@@ -53,9 +57,16 @@ namespace Logic
 
         public bool UpdateBeer(int id, int styleid, int catid, string name, string description)
         {
-            var beer = new Beer(id, styleid, catid, name, description);
-            _beer.Add(beer);
-            return _dal.UpdateBeer(beer.ConvertToDto());
+            try
+            {
+                var beer = new Beer(id, styleid, catid, name, description);
+                _beer.Add(beer);
+                return _dal.UpdateBeer(beer.ConvertToDto());
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Something went wrong, try again");
+            }
         }
 
         public BeerDTO ConvertToDto()

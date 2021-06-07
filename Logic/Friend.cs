@@ -15,9 +15,12 @@ namespace Logic
 
         private readonly IUser _dal;
 
-        public Friend(string userID, string friendID, string username)
+        public Friend()
         {
             _dal = UserFactory.CreateUserDal();
+        }
+        public Friend(string userID, string friendID, string username)
+        {
             UserID = userID;
             FriendID = friendID;
             Username = username;

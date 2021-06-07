@@ -29,11 +29,11 @@ namespace Dal
 
             }
             }
-            catch (SqlException ex)
+            catch (SqlException e)
             {
                 throw new Exception("Database cannot connect, try again");
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
                 throw new Exception("Something went wrong, try again");
             }
@@ -54,14 +54,13 @@ namespace Dal
             else
             {
                 return false;
-
             }
             }
-            catch (SqlException ex)
+            catch (SqlException e)
             {
                 throw new Exception("Database cannot connect, try again");
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
                 throw new Exception("Something went wrong, try again");
             }

@@ -17,22 +17,13 @@ namespace Dal
             {
                  using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DefaultConnection"));
                  var result =  connection.Execute("dbo.UpdateBeer @id, @styleID, @catID, @name, @description", beer);
-
-            if (result > 0)
-            {
-                return true;
+                 return result > 0;
             }
-            else
-            {
-                return false;
-
-            }
-            }
-            catch (SqlException ex)
+            catch (SqlException e)
             {
                 throw new Exception("Database cannot connect, try again");
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
                 throw new Exception("Something went wrong, try again");
             }

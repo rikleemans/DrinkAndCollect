@@ -20,13 +20,13 @@ namespace Dal
                  var output = connection.Query<BeerDTO>("dbo.GetAllBeerInfo").ToList();
                  return output;
             }
-            catch (SqlException ex)
+            catch (SqlException e)
             {
                 throw new Exception("Database cannot connect, try again");
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                throw new Exception("Something went wrong, try again");
+                throw new Exception( "Something went wrong, try again");
             }
         }
         public BeerDTO GetBeerById(int id)
@@ -36,13 +36,13 @@ namespace Dal
                   DynamicParameters parameters = new DynamicParameters();
                   parameters.Add("@id", id);
                   var output = connection.Query<BeerDTO>("dbo.GetAllBeerInfo @id", parameters);
-            return (BeerDTO)output;
+                  return (BeerDTO)output;
             }
-            catch (SqlException ex)
+            catch (SqlException e)
             {
                 throw new Exception("Database cannot connect, try again");
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
                 throw new Exception("Something went wrong, try again");
             }
@@ -55,13 +55,13 @@ namespace Dal
                  DynamicParameters parameters = new DynamicParameters();
                  parameters.Add("@name", name);
                  var output = connection.Query<BeernameDTO>("dbo.GetAllBeer @name", parameters).ToList();
-            return output;
+                 return output;
             }
-            catch (SqlException ex)
+            catch (SqlException e)
             {
                 throw new Exception("Database cannot connect, try again");
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
                 throw new Exception("Something went wrong, try again");
             }
@@ -84,11 +84,11 @@ namespace Dal
 
             }
             }
-            catch (SqlException ex)
+            catch (SqlException e)
             {
                 throw new Exception("Database cannot connect, try again");
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
                 throw new Exception("Something went wrong, try again");
             }
@@ -111,11 +111,11 @@ namespace Dal
                 return false;
             }
             }
-            catch (SqlException ex)
+            catch (SqlException e)
             {
                 throw new Exception("Database cannot connect, try again");
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
                 throw new Exception("Something went wrong, try again");
             }
