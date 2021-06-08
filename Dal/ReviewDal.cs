@@ -23,11 +23,7 @@ namespace Dal
                 {
                     return true;
                 }
-                else
-                {
-                    return false;
-
-                }
+                else return false;
             }
             catch (SqlException e)
             {

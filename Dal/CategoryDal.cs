@@ -34,15 +34,12 @@ namespace Dal
             {
                 using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DefaultConnection"));
                 var result = connection.Execute("dbo.AddCategory @catID, @name", category);
-            if (result > 0)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
 
-            }
+                if (result > 0)
+                {
+                    return true;
+                }
+                else return false;
             }
             catch (SqlException e)
             {
@@ -61,14 +58,11 @@ namespace Dal
                 DynamicParameters parameters = new DynamicParameters();
                 parameters.Add("@catID", id);
                 var result = connection.Execute("dbo.DeleteCat @catID", parameters);
-            if (result > 0)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+                if (result > 0)
+                {
+                    return true;
+                }
+                else return false;
             }
             catch (SqlException e)
             {

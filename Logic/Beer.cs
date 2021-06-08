@@ -57,16 +57,9 @@ namespace Logic
 
         public bool UpdateBeer(int id, int styleid, int catid, string name, string description)
         {
-            try
-            {
                 var beer = new Beer(id, styleid, catid, name, description);
                 _beer.Add(beer);
                 return _dal.UpdateBeer(beer.ConvertToDto());
-            }
-            catch (Exception e)
-            {
-                throw new Exception("Something went wrong, try again");
-            }
         }
 
         public BeerDTO ConvertToDto()

@@ -35,14 +35,11 @@ namespace Dal
             {
               using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DefaultConnection"));
               var result = connection.Execute("dbo.AddStyle @styleID, @name", styles);
-            if (result > 0)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+                if (result > 0)
+                {
+                    return true;
+                }
+                else return false;
             }
             catch (SqlException e)
             {
@@ -61,14 +58,11 @@ namespace Dal
                 DynamicParameters parameters = new DynamicParameters();
                 parameters.Add("@styleID", id);
                 var result = connection.Execute("dbo.DeleteStyle @styleID", parameters);
-            if (result > 0)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+                if (result > 0)
+                {
+                    return true;
+                }
+                else return false;
             }
             catch (SqlException e)
             {

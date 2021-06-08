@@ -54,16 +54,9 @@ namespace Logic
 
         public bool UpdateReview(int reviewID, string userID, int beerID, int rate, string taste, string description, DateTime datum)
         {
-            try
-            {
-                var review = new Review(reviewID, userID, beerID, rate, taste, description, datum);
-                _review.Add(review);
-                return _dal.UpdateReview(review.ConvertToDto());
-            }
-            catch (Exception e)
-            {
-                throw new Exception("Something went wrong, try again");
-            }
+            var review = new Review(reviewID, userID, beerID, rate, taste, description, datum);
+            _review.Add(review);
+            return _dal.UpdateReview(review.ConvertToDto());
         }
     }
 }

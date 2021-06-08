@@ -27,69 +27,34 @@ namespace Logic
 
         public IReadOnlyCollection<IViewableBeer> GetAllBeerInfo()
         {
-            try
-            {
-                _beerCollection.Clear();
+             _beerCollection.Clear();
             _dal.GetAllBeerInfo().ForEach(
-                dto => _beerCollection.Add(new Beer(dto)));
+             dto => _beerCollection.Add(new Beer(dto)));
             return _beerCollection.AsReadOnly();
-            }
-            catch (Exception e)
-            {
-                throw new Exception("Something went wrong, try again");
-            }
         }
 
         public IViewableBeer GetBeerById(int id)
         {
-            try
-            {
-                return new Beer(_dal.GetBeerById(id));
-            }
-            catch (Exception e)
-            {
-                throw new Exception("Something went wrong, try again");
-            }
+            return new Beer(_dal.GetBeerById(id));
         }
 
         public IReadOnlyCollection<BeernameDTO> GetAllBeer(string name)
         {
-            try
-            {
-                _beername.Clear();
-                _beername = _dal.GetAllBeer(name);
-                return _beername.AsReadOnly();
-            }
-            catch (Exception e)
-            {
-                throw new Exception("Something went wrong, try again");
-            }
+            _beername.Clear();
+            _beername = _dal.GetAllBeer(name);
+            return _beername.AsReadOnly();
         }
 
         public bool AddBeer(int id, int styleid, int catid, string name, string description)
         {
-            try
-            {
-                var beer = new Beer(id, styleid, catid, name, description);
-                _beerCollection.Add(beer);
-                return _dal.AddBeer(beer.ConvertToDto());
-            }
-            catch (Exception e)
-            {
-                throw new Exception("Something went wrong, try again");
-            }
+            var beer = new Beer(id, styleid, catid, name, description);
+            _beerCollection.Add(beer);
+            return _dal.AddBeer(beer.ConvertToDto());
         }
 
         public bool RemoveBeer(int id)
         {
-            try
-            {
-                return _dal.RemoveBeer(id);
-            }
-            catch (Exception e)
-            {
-                throw new Exception("Something went wrong, try again");
-            }
+            return _dal.RemoveBeer(id);
         }
     }
 }

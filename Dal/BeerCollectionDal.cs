@@ -35,8 +35,8 @@ namespace Dal
                   using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DefaultConnection"));
                   DynamicParameters parameters = new DynamicParameters();
                   parameters.Add("@id", id);
-                  var output = connection.Query<BeerDTO>("dbo.GetAllBeerInfo @id", parameters);
-                  return (BeerDTO)output;
+                  var output = connection.Query<BeerDTO>("dbo.GetAllBeerById @id", parameters);
+                  return output.FirstOrDefault();
             }
             catch (SqlException e)
             {
@@ -74,15 +74,14 @@ namespace Dal
             {
                 using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DefaultConnection"));
                 var result = connection.Execute("dbo.AddBeer  @id, @catID, @styleID, @name, @description", beerDto);
-            if (result > 0)
-            {
+                if (result > 0)
+                {
                 return true;
-            }
-            else
-            {
+                }
+                else
+                {
                 return false;
-
-            }
+                }
             }
             catch (SqlException e)
             {
@@ -102,14 +101,11 @@ namespace Dal
                  DynamicParameters parameters = new DynamicParameters();
                  parameters.Add("@id", id);
                  var result = connection.Execute("dbo.RemoveBeer @id", parameters);
-            if (result > 0)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+                if (result > 0)
+                {
+                    return true;
+                }
+                else return false;
             }
             catch (SqlException e)
             {

@@ -116,14 +116,11 @@ namespace Dal
             {
                 using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DefaultConnection"));
                 var result = connection.Execute("dbo.AddFriend @userID, @friendID, @username, @firstname, @lastname", friends);
-            if (result > 0)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+                if (result > 0)
+                {
+                    return true;
+                }
+                else return false;
             }
             catch (SqlException e)
             {
@@ -144,14 +141,11 @@ namespace Dal
                 parameters.Add("@userID", userID);
                 parameters.Add("@friendID", friendID);
                 var result = connection.Execute("dbo.RemoveFriend @userID, @friendID, @username, @firstname, @lastname", parameters);
-            if (result > 0)
-            {
-                return true;
-            }
-            else
-            {
-                return false; 
-            }
+                if (result > 0)
+                {
+                    return true;
+                }
+                else return false;
             }
             catch (SqlException e)
             {

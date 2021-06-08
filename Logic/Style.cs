@@ -31,42 +31,21 @@ namespace Logic
         }
         public IReadOnlyCollection<IViewableStyle> GetAllStyle()
         {
-            try
-            {
-                _style.Clear();
-                _dalstyle.GetAllStyle().ForEach(
-                dto => _style.Add(new Style(dto)));
+             _style.Clear();
+             _dalstyle.GetAllStyle().ForEach(
+             dto => _style.Add(new Style(dto)));
             return _style.AsReadOnly();
-            }
-            catch (Exception e)
-            {
-                throw new Exception("Something went wrong, try again");
-            }
         }
         public bool AddStyle(int styleID, string name)
         {
-            try
-            {
-                var styles = new Style(styleID, name);
-                _style.Add(styles);
-                return _dalstyle.AddStyle(styles.ConvertToDto());
-            }
-            catch (Exception e)
-            {
-                throw new Exception("Something went wrong, try again");
-            }
+            var styles = new Style(styleID, name);
+            _style.Add(styles);
+            return _dalstyle.AddStyle(styles.ConvertToDto());
         }
 
         public bool RemoveStyle(int id)
         {
-            try
-            {
-                return _dalstyle.RemoveStyle(id);
-            }
-            catch (Exception e)
-            {
-                throw new Exception("Something went wrong, try again");
-            }
+            return _dalstyle.RemoveStyle(id);
         }
         public StyleDTO ConvertToDto()
         {

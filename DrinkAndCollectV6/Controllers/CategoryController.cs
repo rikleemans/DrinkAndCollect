@@ -62,9 +62,8 @@ namespace DrinkAndCollectV6.Controllers
             }
             catch (Exception e)
             {
-                List<CategoryViewModel> newmodel = new List<CategoryViewModel>();
                 ViewData["message"] = e.Message;
-                return View(newmodel);
+                return View();
             }
 
         }
@@ -79,9 +78,8 @@ namespace DrinkAndCollectV6.Controllers
             }
             catch (Exception e)
             {
-                List<CategoryViewModel> newmodel = new List<CategoryViewModel>();
                 ViewData["message"] = e.Message;
-                return View(newmodel);
+                return View();
             }
 
         }

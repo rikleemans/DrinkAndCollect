@@ -33,42 +33,21 @@ namespace Logic
         }
         public IReadOnlyCollection<IViewableCategory> GetAllCategory()
         {
-            try
-            {
-                _categorycollection.Clear();
-                _dalcat.GetAllCategory().ForEach(
-                dto => _categorycollection.Add(new Category(dto)));
-                 return _categorycollection.AsReadOnly();
-            }
-            catch (Exception e)
-            {
-                throw new Exception("Something went wrong, try again");
-            }
+             _categorycollection.Clear();
+             _dalcat.GetAllCategory().ForEach(
+             dto => _categorycollection.Add(new Category(dto)));
+             return _categorycollection.AsReadOnly();
         }
         public bool AddCategory(int catID, string name)
         {
-            try
-            {
-                var category = new Category(catID, name);
-                 _categorycollection.Add(category);
-                return _dalcat.AddCategory(category.ConvertToDto());
-            }
-            catch (Exception e)
-            {
-                throw new Exception("Something went wrong, try again");
-            }
+            var category = new Category(catID, name);
+            _categorycollection.Add(category);
+            return _dalcat.AddCategory(category.ConvertToDto());
         }
 
         public bool RemoveCategory(int id)
         {
-            try
-            {
-                return _dalcat.RemoveCategory(id);
-            }
-            catch (Exception e)
-            {
-                throw new Exception("Something went wrong, try again");
-            }
+            return _dalcat.RemoveCategory(id);
         }
         public CategoryDTO ConvertToDto()
         {

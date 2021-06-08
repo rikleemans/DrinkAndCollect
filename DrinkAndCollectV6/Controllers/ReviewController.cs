@@ -57,9 +57,8 @@ namespace DrinkAndCollectV6.Controllers
             }
             catch (Exception e)
             {
-                List<ReviewViewModel> newmodel = new List<ReviewViewModel>();
                 ViewData["message"] = e.Message;
-                return View(newmodel);
+                return View();
             }
         }
 
@@ -88,9 +87,8 @@ namespace DrinkAndCollectV6.Controllers
             }
             catch (Exception e)
             {
-                List<ReviewViewModel> newmodel = new List<ReviewViewModel>();
                 ViewData["message"] = e.Message;
-                return View(newmodel);
+                return View();
             }
         }
 
@@ -106,9 +104,8 @@ namespace DrinkAndCollectV6.Controllers
             }
             catch (Exception e)
             {
-                List<ReviewViewModel> newmodel = new List<ReviewViewModel>();
                 ViewData["message"] = e.Message;
-                return View(newmodel);
+                return View();
             }
 
         }
@@ -139,9 +136,8 @@ namespace DrinkAndCollectV6.Controllers
             }
             catch (Exception e)
             {
-                List<ReviewViewModel> newmodel = new List<ReviewViewModel>();
                 ViewData["message"] = e.Message;
-                return View(newmodel);
+                return View();
             }
         }
     }
