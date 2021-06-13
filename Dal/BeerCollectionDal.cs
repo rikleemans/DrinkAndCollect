@@ -76,11 +76,11 @@ namespace Dal
                 var result = connection.Execute("dbo.AddBeer  @id, @catID, @styleID, @name, @description", beerDto);
                 if (result > 0)
                 {
-                return true;
+                    return true;
                 }
                 else
                 {
-                return false;
+                    return false;
                 }
             }
             catch (SqlException e)
