@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using Logic;
+using Test.TestDal;
 
 
 namespace Test
@@ -8,7 +9,7 @@ namespace Test
     [TestClass]
     public class ReviewTests
     {
-        private readonly UserCollection _usercollection = new();
+        private readonly UserCollection _usercollection = new UserCollection(new UserCollectionTestDal());
 
         [TestMethod]
         public void ReviewAdd_User_AddResponseTrue()

@@ -23,6 +23,11 @@ namespace Logic
         {
             _dalstyle = StyleFactory.CreateStyleDal();
         }
+
+       public Style(IStyle Style)
+        {
+            _dalstyle = Style;
+        }
         public Style(StyleDTO dto)
         {
             StyleID = dto.StyleID;

@@ -40,6 +40,10 @@ namespace Logic
         {
             _dal = BeerFactory.CreateBeerDal();
         }
+        public Beer(IBeer Beer)
+        {
+            _dal = Beer;
+        }
         public Beer(int id)
         {
             _dal = BeerFactory.CreateBeerDal();

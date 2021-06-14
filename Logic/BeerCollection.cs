@@ -25,6 +25,13 @@ namespace Logic
             _dal = BeerCollectionFactory.CreateBeerCollectionDal();
         }
 
+        public BeerCollection(IBeerCollection beerCollection)
+        {
+            _dal = beerCollection;
+
+            _dalbeer = BeerFactory.CreateBeerDal();
+        }
+
         public IReadOnlyCollection<IViewableBeer> GetAllBeerInfo()
         {
              _beerCollection.Clear();

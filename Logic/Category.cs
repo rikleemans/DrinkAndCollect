@@ -24,6 +24,10 @@ namespace Logic
         {
             _dalcat = CategoryFactory.CreateCategoryDal();
         }
+        public Category(ICategory category)
+        {
+            _dalcat = category;
+        }
 
         public Category(CategoryDTO dto)
         {

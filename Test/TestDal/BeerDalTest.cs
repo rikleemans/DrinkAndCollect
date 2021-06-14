@@ -17,8 +17,6 @@ namespace Test.TestDal
         {
             try
             {
-                using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DefaultConnection"));
-                var result = connection.Execute("dbo.UpdateBeer @id, @styleID, @catID, @name, @description", beer);
                 return true;
             }
             catch

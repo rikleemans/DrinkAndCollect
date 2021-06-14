@@ -17,6 +17,10 @@ namespace Logic
         {
             _dal = UserCollectionFactory.CreateUserCollectionDal();
         }
+        public UserCollection(IUserCollection UserCollection)
+        {
+            _dal = UserCollection;
+        }
 
         public bool AddReview(int reviewID, string userID, int beerID, int rate, string taste, string description, DateTime datum)
         {

@@ -41,6 +41,11 @@ namespace Logic
         {
             _dal = UserFactory.CreateUserDal();
         }
+
+        public User(IUser User)
+        {
+            _dal = User;
+        }
         public User(UserDTO dto)
         {
             Username = dto.Username;

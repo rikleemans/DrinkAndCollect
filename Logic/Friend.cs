@@ -19,6 +19,7 @@ namespace Logic
         {
             _dal = UserFactory.CreateUserDal();
         }
+
         public Friend(string userID, string friendID, string username)
         {
             UserID = userID;

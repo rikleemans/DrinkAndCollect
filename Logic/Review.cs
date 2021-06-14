@@ -26,6 +26,11 @@ namespace Logic
             _dal = ReviewFactory.CreateReviewDal();
         }
 
+        public Review(IReview Review)
+        {
+            _dal = Review;
+        }
+
         public Review(int reviewID, string userID, int beerID, int rate, string taste, string description, DateTime datum)
         {
             ReviewID = reviewID;

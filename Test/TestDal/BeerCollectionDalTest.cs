@@ -49,6 +49,7 @@ namespace Test.TestDal
             {
                 throw new Exception("Something went wrong, try again");
             }
+
         }
 
         public List<BeernameDTO> GetAllBeer(string name)
