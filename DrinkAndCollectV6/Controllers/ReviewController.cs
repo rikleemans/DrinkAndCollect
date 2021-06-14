@@ -39,7 +39,7 @@ namespace DrinkAndCollectV6.Controllers
             }
         }
 
-        public ActionResult Details(int id)
+        public ActionResult Details(string id)
         {
             IReadUser user = UserFactory.CreateUserLogic();
             List<ReviewViewModel> reviewview = new List<ReviewViewModel>();

@@ -10,7 +10,8 @@ using Test.TestDal;
 
 namespace Test
 {
-    class CategoryTests
+    [TestClass]
+    public class CategoryTests
     {
         private readonly Category _style = new Category(new CategoryTestDal());
 

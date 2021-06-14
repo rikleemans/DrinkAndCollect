@@ -14,7 +14,7 @@ namespace DrinkAndCollectV6.Controllers
     {
         // GET: UserController
 
-        public ActionResult GetCollection(int id)
+        public ActionResult GetCollection(string id)
         {
             IReadUser user = UserFactory.CreateUserLogic();
             List<ReviewViewModel> viewcollection = new List<ReviewViewModel>();

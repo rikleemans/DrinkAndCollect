@@ -30,14 +30,14 @@ namespace Test.TestDal
                 throw new Exception("Something went wrong, try again");
             }
         }
-        public List<ReviewDTO> GetAllReviewsByUser(int id)
+        public List<ReviewDTO> GetAllReviewsByUser(string id)
         {
             try
             {
                  using IDbConnection connection = new SqlConnection(DalAccess.GetConnectionString("DefaultConnection"));
                  DynamicParameters parameters = new DynamicParameters();
                  parameters.Add("@id", id);
-                 var output = connection.Query<ReviewDTO>("dbo.GetAllReviewsByUser", parameters).ToList();
+                 var output = connection.Query<ReviewDTO>("dbo.GetAllReviewsByUser @id", parameters).ToList();
                  return output;
             }
             catch (SqlException e)
@@ -49,7 +49,7 @@ namespace Test.TestDal
                 throw new Exception("Something went wrong, try again");
             }
         }
-        public List<ReviewDTO> GetCollection(int id)
+        public List<ReviewDTO> GetCollection(string id)
         {
             try
             {

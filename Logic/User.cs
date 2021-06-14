@@ -67,14 +67,14 @@ namespace Logic
             dto => _review.Add(new Review(dto)));
             return _review.AsReadOnly();
         }
-        public IReadOnlyCollection<IViewableReview> GetAllReviewsByUser(int id)
+        public IReadOnlyCollection<IViewableReview> GetAllReviewsByUser(string id)
         {
             _review.Clear();
             _dal.GetAllReviewsByUser(id).ForEach(
             dto => _review.Add(new Review(dto)));
             return _review.AsReadOnly();
         }
-        public IReadOnlyCollection<IViewableReview> GetCollection(int id)
+        public IReadOnlyCollection<IViewableReview> GetCollection(string id)
         {
             _review.Clear();
             _dal.GetCollection(id).ForEach(

@@ -17,9 +17,10 @@ namespace Test
     [TestMethod]
     public void BeerInfoSearch_User_Response()
     {
+        int number = 3;
         var output = _beercollection.GetAllBeerInfo();
 
-        Assert.AreEqual(output.Count, 1);
+        Assert.AreEqual(output.Count, number);
     }
 
     [TestMethod]
@@ -30,7 +31,7 @@ namespace Test
 
         var output = _beercollection.GetAllBeer(beername);
 
-        Assert.AreEqual(output.Count, 1);
+        Assert.AreEqual(output.Count, 2);
     }
 
     [TestMethod]
@@ -54,5 +55,15 @@ namespace Test
         Assert.AreEqual(expected, response);
     }
 
-}
+    [TestMethod]
+    public void GetBeerInfo_User_GetBeer()
+    {
+        int number = 1;
+
+        var response = _beercollection.GetBeerById(number);
+
+        Assert.IsNotNull( response);
+    }
+
+    }
 }
