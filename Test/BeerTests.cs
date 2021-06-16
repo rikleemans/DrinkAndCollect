@@ -12,7 +12,7 @@ namespace Test
     { 
         private readonly BeerCollection _beercollection = new BeerCollection(new BeerCollectionDalTest());
         private readonly Beer _beers = new();
-        private readonly Beer _beer = new(1, 1, 1, "kaas", "kaas");
+        private readonly Beer _beer = new(1, 1, 1, "bavaria", "bavaria");
 
     [TestMethod]
     public void BeerInfoSearch_User_Response()
@@ -26,8 +26,8 @@ namespace Test
     [TestMethod]
     public void BeerNameSearch_User_Response()
     {
-        string beername = "kaas";
-        string expected = "kaas";
+        string beername = "bavaria";
+        string expected = "bavaria";
 
         var output = _beercollection.GetAllBeer(beername);
 
@@ -37,9 +37,9 @@ namespace Test
     [TestMethod]
     public void AddBeerInfo_User_AddBeer()
     {
-        BeerDTO beer = new BeerDTO(2, 2, 2, "kaas", "kaas");
+        BeerDTO beer = new BeerDTO(2, 2, 2, "bavaria", "bavaria");
 
-        bool output = _beercollection.AddBeer(2, 2, 2, "kaas", "kaas");
+        bool output = _beercollection.AddBeer(2, 2, 2, "bavaria", "bavaria");
         
         Assert.IsTrue(output);
     }
@@ -62,8 +62,7 @@ namespace Test
 
         var response = _beercollection.GetBeerById(number);
 
-        Assert.IsNotNull( response);
+        Assert.IsNotNull(response);
     }
-
     }
 }

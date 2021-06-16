@@ -18,9 +18,9 @@ namespace Test
         [TestMethod]
         public void AddCategory_User_AddCategory()
         {
-            CategoryDTO category = new CategoryDTO(2, "kaas");
+            CategoryDTO category = new CategoryDTO(2, "Belgie");
 
-            bool output = _style.AddCategory(2, "kaas");
+            bool output = _style.AddCategory(3, "Belgie");
 
             Assert.IsTrue(output);
         }

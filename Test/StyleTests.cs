@@ -20,7 +20,7 @@ namespace Test
         public void AddCategory_User_AddCategory()
         {
             int getal = 2;
-            string woord = "kaas";
+            string woord = "Zwaar";
 
             bool output = _style.AddStyle(getal, woord);
 
