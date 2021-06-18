@@ -56,9 +56,19 @@ namespace Test
     }
 
     [TestMethod]
-    public void GetBeerInfo_User_GetBeer()
+    public void GetBeerInfo_User_GetBeerMin()
     {
         int number = 1;
+
+        var response = _beercollection.GetBeerById(number);
+
+        Assert.IsNotNull(response);
+    }
+
+    [TestMethod]
+    public void GetBeerInfo_User_GetBeerTooMax()
+    {
+        int number = 10;
 
         var response = _beercollection.GetBeerById(number);
 
